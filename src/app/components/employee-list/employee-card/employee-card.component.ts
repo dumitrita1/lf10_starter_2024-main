@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Employee } from "../../Employee/Employee";
+import {Employee} from "../dummy-model/EmployeeDummy";
 
 /**
  * Configuration for card color generation

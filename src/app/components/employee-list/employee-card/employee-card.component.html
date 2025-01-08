@@ -4,7 +4,7 @@
 
   <!-- Avatar or Initials -->
   <div class="employee-avatar">
-    {{ employee.id }}
+    <img *ngIf="employee.avatarUri" [src]="employee.avatarUri" alt="Employee Avatar">
   </div>
 
   <!-- Employee Details -->
