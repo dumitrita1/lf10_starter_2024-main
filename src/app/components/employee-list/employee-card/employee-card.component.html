@@ -1,0 +1,14 @@
+<div class="employee-card"
+     [style.backgroundColor]="bgColorHex"
+     [style.color]="textColorHex">
+
+  <!-- Avatar or Initials -->
+  <div class="employee-avatar">
+    <img *ngIf="employee.avatarUri" [src]="employee.avatarUri" alt="Employee Avatar">
+  </div>
+
+  <!-- Employee Details -->
+  <div class="employee-details">
+    <h3 class="employee-name">{{ employee.firstName + " " + employee.lastName }}</h3>
+  </div>
+</div>

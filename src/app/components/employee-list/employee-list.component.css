@@ -1,0 +1,7 @@
+.employees-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+  transition: all 200ms ease-in-out;
+}
