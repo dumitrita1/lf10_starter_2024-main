@@ -1,12 +1,12 @@
-<h1>Main page with all employees</h1>
-Wenn Sie in der EmployeeListComponent.ts ein gültiges Bearer-Token eintragen, sollten hier die Namen der in der Datenbank gespeicherten Mitarbeiter angezeigt werden!
+<h2 class="quote">Menschen, die gern gute Sachen machen</h2>
+
 <div class="employees-container">
   <!-- TODO: Do it with the array of employees sorted by Qualifications, waiting for the final model... -->
 
   <!--  @for(e of employees$ | async; track e.id) { -->
   @for(e of dummyEmployees; track e.id) {
 
-    <app-employee-card [employee]="e"></app-employee-card>
+    <app-employee-card class="employee-card-instance" [employee]="e"></app-employee-card>
 
       }
 </div>
