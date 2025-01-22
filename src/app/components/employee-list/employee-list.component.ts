@@ -5,11 +5,12 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Employee} from "../Employee/Employee";
 import {EmployeeCardComponent} from "./employee-card/employee-card.component";
 import {employees} from "./dummy-model/DummyData";
+import {NavbarComponent} from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-employee-list',
   standalone: true,
-  imports: [CommonModule, EmployeeCardComponent],
+  imports: [CommonModule, EmployeeCardComponent, NavbarComponent],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.css'
 })

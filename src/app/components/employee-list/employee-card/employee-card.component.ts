@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Employee } from "../dummy-model/EmployeeDummy";
+import {NgIf} from "@angular/common";
 
 interface ColorConfig {
   saturationRange: [number, number];
@@ -15,7 +16,9 @@ interface ColorSet {
 @Component({
   selector: 'app-employee-card',
   standalone: true,
-  imports: [],
+  imports: [
+    NgIf
+  ],
   templateUrl: './employee-card.component.html',
   styleUrl: './employee-card.component.css'
 })
