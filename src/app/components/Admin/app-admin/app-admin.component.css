@@ -1,0 +1,33 @@
+/*start utils*/
+
+/*end utils*/
+
+.admin-dashboard-container{
+  color: var(--primary-black-color);
+  margin-top: 40px;
+  border-top: 3px solid var(--primary-color);
+  height: calc(100vh - 43px);
+}
+
+.admin-dashboard-container .admin-dashboard {
+  display: flex;
+  height: 100%;
+}
+
+
+.admin-dashboard aside{
+  margin-right: 400px;
+  border-right: 3px solid var(--primary-color);
+  padding: 100px 50px;
+}
+.admin-dashboard aside a{
+  color: var(--primary-black-color);
+}
+
+.admin-dashboard aside a.active{color: var(--primary-white-color)}
+
+.admin-dashboard aside ul li{
+  margin-bottom: 20px;
+}
+
+

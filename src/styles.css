@@ -2,3 +2,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*start utils*/
+:root{
+  --primary-color: #008CFE;
+  --primary-black-color: #213547;
+  --primary-white-color: #f1f1f1;
+  --primary-font: "Roboto", serif;
+}
+
+body{
+  font-family: "Roboto", serif;
+  /*--primary-black-color: #213547;*/
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+ul li{
+  list-style-type: none;
+}
+
+a{text-decoration: none;}
+
+.primary-btn, .active{
+  color: var(--primary-white-color);
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+/*end utils*/

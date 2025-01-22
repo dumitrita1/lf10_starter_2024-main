@@ -1,0 +1,51 @@
+.new-employee-container{
+ margin-top: 100px;
+  width: 600px;
+}
+
+.new-employee-container .new-employee{
+  width: 100%;
+}
+
+.new-employee-container .new-employee table{
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: var(--primary-color);
+}
+
+.new-employee-container .new-employee table tr th{
+  background-color: var(--primary-color);
+  color: var(--primary-white-color);
+  font-weight: normal;
+  padding: 6px 4px;
+  width: 30%;
+  border-bottom: 1px solid var(--primary-white-color);
+}
+
+.new-employee-container .new-employee table td{
+  width: 100%;
+}
+
+.new-employee-container .new-employee table tr td input[type="text"],
+.new-employee-container .new-employee table tr td input[type="tel"]
+{
+  border: 1px solid var(--primary-color);
+  padding: 6px 4px;
+  border-left: none;
+  outline: none;
+  width: 99%;
+  margin: -2px;
+  border-bottom: 8px solid var(--primary-white-color);
+  color: var(--primary-color);
+}
+
+.new-employee button[type="submit"]{
+  color: var(--primary-white-color);
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  padding: 8px 10px;
+  outline: none;
+  float: right;
+  border: none;
+  font-family: var( --primary-font);
+}
