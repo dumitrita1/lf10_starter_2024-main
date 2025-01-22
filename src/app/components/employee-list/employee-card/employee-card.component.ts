@@ -1,18 +1,24 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {Employee} from "../dummy-model/EmployeeDummy";
+import { Employee } from "../dummy-model/EmployeeDummy";
+import {NgIf} from "@angular/common";
 
-/**
- * Configuration for card color generation
- */
 interface ColorConfig {
   saturationRange: [number, number];
   lightnessRange: [number, number];
 }
 
+interface ColorSet {
+  background: string;
+  button: string;
+  text: string;
+}
+
 @Component({
   selector: 'app-employee-card',
   standalone: true,
-  imports: [],
+  imports: [
+    NgIf
+  ],
   templateUrl: './employee-card.component.html',
   styleUrl: './employee-card.component.css'
 })
@@ -27,33 +33,49 @@ export class EmployeeCardComponent implements OnInit {
     id: 1
   };
 
-  bgColorHex: string;
-  textColorHex: string;
+
+  openEmployeeCard() {
+    // TODO
+  }
+
+  colors: ColorSet = {
+    background: '#ffffff',
+    button: '#ffffff',
+    text: '#000000'
+  };
 
   private static readonly colorConfigs: Record<string, ColorConfig> = {
     default: {
       saturationRange: [15, 30],
       lightnessRange: [85, 95]
-    },
-    highlighted: {
-      saturationRange: [30, 45],
-      lightnessRange: [80, 90]
     }
   };
 
-  constructor() {
-    this.bgColorHex = '#ffffff';
-    this.textColorHex = '#000000';
-  }
-
   ngOnInit(): void {
-    this.bgColorHex = this.generateCardColor();
-    this.textColorHex = this.getContrastTextColor(this.bgColorHex);
+    const hue = this.randomInRange(0, 360);
+    const config = EmployeeCardComponent.colorConfigs['default'];
+
+    // Generate background color
+    const bgSaturation = this.randomInRange(
+      config.saturationRange[0],
+      config.saturationRange[1]
+    );
+    const bgLightness = this.randomInRange(
+      config.lightnessRange[0],
+      config.lightnessRange[1]
+    );
+
+    // Generate button color with same hue but darker
+    const buttonLightness = bgLightness - 15; // Make button darker
+    const buttonSaturation = bgSaturation + 5; // Slightly more saturated
+
+    this.colors = {
+      background: this.hslToHex(hue, bgSaturation, bgLightness),
+      button: this.hslToHex(hue, buttonSaturation, buttonLightness),
+      text: this.getContrastTextColor(this.hslToHex(hue, bgSaturation, bgLightness))
+    };
   }
 
-  /**
-   * Converts HSL values to hex color string
-   */
   private hslToHex(h: number, s: number, l: number): string {
     const hDecimal = h / 360;
     const sDecimal = s / 100;
@@ -91,48 +113,17 @@ export class EmployeeCardComponent implements OnInit {
     return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
   }
 
-  /**
-   * Generates a random number within a range
-   */
   private randomInRange(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  /**
-   * Generates a card background color based on employee properties
-   */
-  private generateCardColor(): string {
-    // You could use different configs based on employee properties
-    const config = EmployeeCardComponent.colorConfigs['default'];
-
-    // Generate random HSL values within configured ranges
-    const hue = this.randomInRange(0, 360);
-    const saturation = this.randomInRange(
-      config.saturationRange[0],
-      config.saturationRange[1]
-    );
-    const lightness = this.randomInRange(
-      config.lightnessRange[0],
-      config.lightnessRange[1]
-    );
-
-    return this.hslToHex(hue, saturation, lightness);
-  }
-
-  /**
-   * Calculates contrasting text color for given background
-   */
   private getContrastTextColor(backgroundColor: string): string {
     const hex = backgroundColor.replace('#', '');
-    if (!/^[0-9A-Fa-f]{6}$/.test(hex)) {
-      throw new Error('Invalid hex color format. Expected: #RRGGBB or RRGGBB');
-    }
-
     const [r, g, b] = hex.match(/.{2}/g)!
       .map(colorPart => parseInt(colorPart, 16));
 
     const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-
     return brightness >= 128 ? '#000000' : '#ffffff';
   }
+
 }
