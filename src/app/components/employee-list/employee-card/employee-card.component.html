@@ -1,0 +1,15 @@
+<div class="employee-card" [style.backgroundColor]="colors.background" [style.color]="colors.text">
+  <!-- Avatar -->
+  <div class="employee-avatar">
+    <img *ngIf="employee.avatarUri" [src]="employee.avatarUri" alt="Employee Avatar">
+  </div>
+
+  <!-- Employee Details -->
+  <div class="employee-details">
+    <h3 class="employee-name">{{ employee.firstName + " " + employee.lastName }}</h3>
+  </div>
+
+  <!-- Read More Button -->
+  <button class="read-more-button" (click)="openEmployeeCard()" [style.backgroundColor]="colors.button" [style.color]="colors.text">
+    Mehr Lesen </button>
+</div>

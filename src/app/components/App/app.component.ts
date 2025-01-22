@@ -6,7 +6,6 @@ import {NewEmployeeComponent} from "../Employee/new-employee/new-employee.compon
 import {AppAdminComponent} from "../Admin/app-admin/app-admin.component";
 
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
