@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://authproxy.szut.dev",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

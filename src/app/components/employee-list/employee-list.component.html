@@ -6,7 +6,7 @@
   <!-- TODO: Do it with the array of employees sorted by Qualifications, waiting for the final model... -->
 
   <!--  @for(e of employees$ | async; track e.id) { -->
-  @for(e of dummyEmployees; track e.id) {
+  @for(e of employeesToDisplay; track e.id) {
 
     <app-employee-card class="employee-card-instance" [employee]="e"></app-employee-card>
 
