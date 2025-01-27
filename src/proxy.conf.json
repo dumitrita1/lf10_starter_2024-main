@@ -3,5 +3,11 @@
     "target": "https://authproxy.szut.dev",
     "secure": false,
     "changeOrigin": true
+  },
+  "/auth": {
+    "target": "http://authproxy.szut.dev",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
   }
 }
