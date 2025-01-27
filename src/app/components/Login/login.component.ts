@@ -1,31 +1,30 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   username: string = '';
   password: string = '';
-  loginError: string = '';
+  errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
   login() {
-    this.authService.login(this.username, this.password).subscribe((isLoggedIn) => {
-      if (isLoggedIn) {
-        const role = this.authService.getRole();
-        if (role === 'admin') {
-          this.router.navigate(['/admin-dashboard']);
-        } else {
-          this.router.navigate(['/user-dashboard']);
-        }
+    if (this.authService.login(this.username, this.password)) {
+      const role = this.authService.getRole();
+      if (role === 'admin') {
+        this.router.navigate(['/admin-dashboard']);
       } else {
-        this.loginError = 'Invalid username or password';
+        this.router.navigate(['/user-dashboard']);
       }
-    });
+    } else {
+      this.errorMessage = 'Invalid username or password';
+    }
   }
 }
