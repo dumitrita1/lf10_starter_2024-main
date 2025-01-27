@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Employee } from "../dummy-model/EmployeeDummy";
 import {NgIf} from "@angular/common";
+import {Router} from "@angular/router";
 
 interface ColorConfig {
   saturationRange: [number, number];
@@ -33,9 +34,14 @@ export class EmployeeCardComponent implements OnInit {
     id: 1
   };
 
+  constructor(private router: Router) {
+    this.router = router;
+  }
 
   openEmployeeCard() {
-    // TODO
+    console.log('Open employee card');
+    // navigate to employee-details
+    this.router.navigate(['/employee', this.employee.id]);
   }
 
   colors: ColorSet = {
