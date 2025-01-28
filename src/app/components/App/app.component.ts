@@ -9,7 +9,7 @@ import {AppAdminComponent} from "../Admin/app-admin/app-admin.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, EmployeeListComponent, NewEmployeeComponent, AppAdminComponent],
+  imports: [CommonModule, EmployeeListComponent, NewEmployeeComponent, AppAdminComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -1,20 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {NavbarComponent} from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
   standalone: true,
+  imports: [
+    NavbarComponent
+  ],
   styleUrls: ['./employee-details.component.css']
 })
 export class EmployeeDetailsComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  employee: any;
+
+  constructor(private route: ActivatedRoute) {
+
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       const id = params['id'];
       // Hier dann Mitarbeiterdaten laden
+      console.log('Employee ID: ' + id);
+      // TODO: use service to get employee by ID
     });
   }
 
@@ -22,7 +32,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
   employeeName() {
     // Platzhalter
-    return "Parima Thomson";
+    return "Parima Thomson ID " + this.route.snapshot.params['id'];
   }
 
   employeeDescription() {

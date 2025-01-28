@@ -1,12 +1,18 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import {AuthService} from "../../service/auth.service";
+import {FormsModule} from "@angular/forms";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  imports: [
+    FormsModule,
+    NgIf
+  ]
 })
 export class LoginComponent {
   username: string = '';

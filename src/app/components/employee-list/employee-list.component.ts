@@ -35,6 +35,7 @@ export class EmployeeListComponent implements OnInit {
         .set('Content-Type', 'application/json')
         .set('Authorization', `Bearer ${this.bearer}`)
     });
+    console.log(this.employees$);
   }
 
 
