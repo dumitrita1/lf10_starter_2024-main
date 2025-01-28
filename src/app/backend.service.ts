@@ -6,13 +6,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BackendService {
-  private apiUrl = 'http://localhost:5432';
+  private apiUrl = 'http://localhost:8089';
 
   constructor(private http: HttpClient) {}
 
-  getEmployees(): Observable<any> {
-    console.log(this.http.get(`${this.apiUrl}/employees`).subscribe());
-    return this.http.get(`${this.apiUrl}/employees`);
+  getEmployees(bearer: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/employees`, {
+      headers: {
+        Authorization: `Bearer ${bearer}`
+      }
+    });
   }
 
   getEmployeeById(id: number): Observable<any> {

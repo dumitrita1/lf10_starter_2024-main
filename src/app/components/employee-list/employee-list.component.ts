@@ -39,13 +39,19 @@ export class EmployeeListComponent implements OnInit {
 
 
 
-  ngOnInit(): void {
-    if (this.keycloakService.isLoggedIn()) {
-      this.backendService.getEmployees().subscribe(data => {
-        this.employees$ = data;
+  async ngOnInit(): Promise<void> {
+    console.log("is logged in: " + this.keycloakService.isLoggedIn());
+    //if (this.keycloakService.isLoggedIn()) {
+    this.backendService.getEmployees(await this.bearer).subscribe({
+      next: (next) => {
+        this.employees$ = next;
         this.employeesToDisplay = this.employees$;
         console.log(this.employeesToDisplay);
-      });
-    }
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
   }
+ // }
 }
