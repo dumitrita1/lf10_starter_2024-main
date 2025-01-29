@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {NavbarComponent} from "../navbar/navbar.component";
+import {BackendService} from "../../backend.service";
+import {KeycloakService} from "../../keycloak.service";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-employee-details',
@@ -14,57 +17,59 @@ import {NavbarComponent} from "../navbar/navbar.component";
 export class EmployeeDetailsComponent implements OnInit {
 
   employee: any;
+  id = 0;
+  token = "";
 
-  constructor(private route: ActivatedRoute) {
-
+  constructor(private router: Router,private route: ActivatedRoute, public backendService: BackendService, public keycloakService: KeycloakService, public authSerive: AuthService) {
+    this.employee = {};
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.token = await this.keycloakService.getToken();
     this.route.params.subscribe(params => {
       const id = params['id'];
+      this.id = id;
+      this.backendService.getEmployeeById(id, this.token).subscribe({
+        next: (next) => {
+          this.employee = next;
+          console.log(this.employee);
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      });
       // Hier dann Mitarbeiterdaten laden
-      console.log('Employee ID: ' + id);
+      console.log('Employee: ' + this.employee);
       // TODO: use service to get employee by ID
     });
   }
 
 
 
+
   employeeName() {
-    // Platzhalter
-    return "Parima Thomson ID " + this.route.snapshot.params['id'];
+    return `${this.employee.firstName} ${this.employee.lastName}`;
   }
 
   employeeDescription() {
-    // Platzhalter
-    return "nown printer took a galley of type and scrambled it to make a type specimen book. " +
-      "It has survived not only five centuries, but also the leap into electronic typesetting, " +
-      "remaining essentially unchanged. It was popularised in the 1960s with the release of " +
-      "Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing " +
-      "software like Aldus PageMaker including versions of Lorem Ipsum";
+    return `${this.employee.street}, ${this.employee.postcode} ${this.employee.city}.`;
   }
 
   employeeDepartment() {
-    // Platzhalter
-    return "Fachinformatik";
+    return this.employee.skillSet.map((skill: { skill: any; }) => skill.skill).join(', ');
   }
 
   employeeEmail() {
-    // Platzhalter
-    return "blabla@gmail.com"
+    return "blabla@gmail.com"; // Assuming email is not provided in the object
   }
 
   employeePhonenumber() {
-    // Platzhalter
-    return "1234 4 44 44"
+    return this.employee.phone;
   }
-
 
   employeePosition() {
-    // Platzhalter
-    return "Softwareentwickler";
+    return "Softwareentwickler"; // Assuming position is not provided in the object
   }
-
 
   // Buttons
   addFavorite() {
@@ -73,12 +78,22 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   deleteEmployee() {
-    // Platzhalter
-    console.log('Deleting employee');
+    //if (this.authSerive.getRole() === 'admin') {
+      this.backendService.deleteEmployee(this.id, this.token).subscribe({
+        next: (next) => {
+          console.log('Employee deleted');
+          // go to employee-list page
+          this.router.navigate(['/employee-list']);
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      });
+   // }
   }
 
   logout() {
     // Platzhalter
-    console.log('Logging out');
+    this.router.navigate(['/login']);
   }
 }
