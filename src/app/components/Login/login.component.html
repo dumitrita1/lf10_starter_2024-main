@@ -1,11 +1,11 @@
-<div>
-    <h2>Login</h2>
-    <form (ngSubmit)="login()">
-      <label for="username">Username:</label>
+<div class="contact">
+    <h2 class="contact-form-title">HiTec GmbH</h2>
+    <form class ="contact-form" (ngSubmit)="login()">
       <input [(ngModel)]="username" id="username" name="username" required />
-      <label for="password">Password:</label>
+      <label for="username">Username:</label>
       <input [(ngModel)]="password" id="password" name="password" type="password" required />
-      <button type="submit">Login</button>
+      <label for="password">Password:</label>
+      <button class="btn" type="submit">Einloggen</button>
     </form>
     <p *ngIf="errorMessage">{{ errorMessage }}</p>
   </div>

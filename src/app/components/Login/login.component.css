@@ -1,0 +1,52 @@
+.contact{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.contact-form-title{
+    font-size: 100px;
+    font-family: "Just Me Again Down Here", serif;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+label {
+    font-size: 16px;
+    margin-bottom: 50px;
+}
+
+input {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #666;
+    padding: 8px;
+    font-size: 18px;
+    outline: none;
+    background: transparent;
+
+}
+
+input:focus {
+    border-bottom: 2px solid black;
+}
+
+p {
+    color: red;
+    margin-top: 10px;
+}
+.btn{
+    width: 600px;
+    height: 65px;
+    background: #4FADF9;
+    border-radius: 10px;
+    color: white;
+}
+
+.btn:hover {
+    background-color: #448eca;
+}
