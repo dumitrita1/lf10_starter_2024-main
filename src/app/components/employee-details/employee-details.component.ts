@@ -4,13 +4,15 @@ import {NavbarComponent} from "../navbar/navbar.component";
 import {BackendService} from "../../backend.service";
 import {KeycloakService} from "../../keycloak.service";
 import {AuthService} from "../../service/auth.service";
+import {LogoutFooterComponent} from "./logout-footer/logout-footer.component";
 
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
   standalone: true,
   imports: [
-    NavbarComponent
+    NavbarComponent,
+    LogoutFooterComponent
   ],
   styleUrls: ['./employee-details.component.css']
 })
@@ -42,6 +44,15 @@ export class EmployeeDetailsComponent implements OnInit {
       console.log('Employee: ' + this.employee);
       // TODO: use service to get employee by ID
     });
+
+    // if the user is not admin, grey out the delete button
+    if (this.authSerive.getRole() !== 'admin') {
+      const deleteButton = document.getElementById('delete-button');
+      if (deleteButton) {
+        deleteButton.setAttribute('disabled', 'true');
+        deleteButton.style.backgroundColor = 'grey';
+      }
+    }
   }
 
 
@@ -59,16 +70,9 @@ export class EmployeeDetailsComponent implements OnInit {
     return this.employee.skillSet.map((skill: { skill: any; }) => skill.skill).join(', ');
   }
 
-  employeeEmail() {
-    return "blabla@gmail.com"; // Assuming email is not provided in the object
-  }
 
   employeePhonenumber() {
     return this.employee.phone;
-  }
-
-  employeePosition() {
-    return "Softwareentwickler"; // Assuming position is not provided in the object
   }
 
   // Buttons
@@ -78,7 +82,7 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   deleteEmployee() {
-    //if (this.authSerive.getRole() === 'admin') {
+    if (this.authSerive.getRole() === 'admin') {
       this.backendService.deleteEmployee(this.id, this.token).subscribe({
         next: (next) => {
           console.log('Employee deleted');
@@ -89,11 +93,8 @@ export class EmployeeDetailsComponent implements OnInit {
           console.error(error);
         }
       });
-   // }
+    }
   }
 
-  logout() {
-    // Platzhalter
-    this.router.navigate(['/login']);
-  }
+
 }
