@@ -8,17 +8,19 @@ import {employees} from "./dummy-model/DummyData";
 import {NavbarComponent} from "../navbar/navbar.component";
 import { BackendService } from '../../backend.service';
 import {KeycloakService} from "../../keycloak.service";
+import {LogoutFooterComponent} from "../employee-details/logout-footer/logout-footer.component";
 
 @Component({
   selector: 'app-employee-list',
   standalone: true,
-  imports: [CommonModule, EmployeeCardComponent, NavbarComponent],
+  imports: [CommonModule, EmployeeCardComponent, NavbarComponent, LogoutFooterComponent],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.css'
 })
 export class EmployeeListComponent implements OnInit {
   employees$: Observable<Employee[]>;
   employeesToDisplay: any;
+  groupedEmployees: { [key: string]: Employee[] } = {};
   bearer: Promise<string>;
   constructor(private http: HttpClient,
               private backendService: BackendService,
@@ -38,21 +40,31 @@ export class EmployeeListComponent implements OnInit {
     console.log(this.employees$);
   }
 
-
+  groupEmployeesBySkill(employees: any[]) {
+    const grouped: { [key: string]: Employee[] } = {};
+    employees.forEach(employee => {
+      employee.skillSet.forEach((skill: { skill: string | number; }) => {
+        if (!grouped[skill.skill]) {
+          grouped[skill.skill] = [];
+        }
+        grouped[skill.skill].push(employee);
+      });
+    });
+    this.groupedEmployees = grouped;
+  }
 
   async ngOnInit(): Promise<void> {
     console.log("is logged in: " + this.keycloakService.isLoggedIn());
-    //if (this.keycloakService.isLoggedIn()) {
     this.backendService.getEmployees(await this.bearer).subscribe({
       next: (next) => {
         this.employees$ = next;
         this.employeesToDisplay = this.employees$;
-        console.log(this.employeesToDisplay);
+        this.groupEmployeesBySkill(this.employeesToDisplay);
+        console.log(this.groupedEmployees);
       },
       error: (error) => {
         console.error(error);
       }
     });
   }
- // }
 }

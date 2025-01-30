@@ -4,13 +4,15 @@ import {NavbarComponent} from "../navbar/navbar.component";
 import {BackendService} from "../../backend.service";
 import {KeycloakService} from "../../keycloak.service";
 import {AuthService} from "../../service/auth.service";
+import {LogoutFooterComponent} from "./logout-footer/logout-footer.component";
 
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
   standalone: true,
   imports: [
-    NavbarComponent
+    NavbarComponent,
+    LogoutFooterComponent
   ],
   styleUrls: ['./employee-details.component.css']
 })
@@ -59,16 +61,9 @@ export class EmployeeDetailsComponent implements OnInit {
     return this.employee.skillSet.map((skill: { skill: any; }) => skill.skill).join(', ');
   }
 
-  employeeEmail() {
-    return "blabla@gmail.com"; // Assuming email is not provided in the object
-  }
 
   employeePhonenumber() {
     return this.employee.phone;
-  }
-
-  employeePosition() {
-    return "Softwareentwickler"; // Assuming position is not provided in the object
   }
 
   // Buttons
@@ -92,8 +87,5 @@ export class EmployeeDetailsComponent implements OnInit {
    // }
   }
 
-  logout() {
-    // Platzhalter
-    this.router.navigate(['/login']);
-  }
+
 }
