@@ -5,20 +5,25 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private loggedIn = new BehaviorSubject<boolean>(false);
-  private role: string = '';
+  private loggedIn = new BehaviorSubject<boolean>(this.getStoredAuth());
+  private role: string = this.getStoredRole();
 
   login(username: string, password: string): boolean {
     if (username === 'admin' && password === 'admin123') {
-      this.loggedIn.next(true);
-      this.role = 'admin';
+      this.setAuth(true, 'admin');
       return true;
     } else if (username === 'user' && password === 'user123') {
-      this.loggedIn.next(true);
-      this.role = 'user';
+      this.setAuth(true, 'user');
       return true;
     }
     return false;
+  }
+
+  private setAuth(isLoggedIn: boolean, role: string) {
+    this.loggedIn.next(isLoggedIn);
+    this.role = role;
+    localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
+    localStorage.setItem('role', role);
   }
 
   isAuthenticated(): boolean {
@@ -30,7 +35,16 @@ export class AuthService {
   }
 
   logout(): void {
-    this.loggedIn.next(false);
-    this.role = '';
+    this.setAuth(false, '');
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('role');
+  }
+
+  private getStoredAuth(): boolean {
+    return JSON.parse(localStorage.getItem('isLoggedIn') || 'false');
+  }
+
+  private getStoredRole(): string {
+    return localStorage.getItem('role') || '';
   }
 }
