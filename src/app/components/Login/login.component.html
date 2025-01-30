@@ -7,5 +7,7 @@
       <label for="password">Password:</label>
       <button class="btn" type="submit">Einloggen</button>
     </form>
-    <p *ngIf="errorMessage">{{ errorMessage }}</p>
+    
+    <p [hidden]="!showError">{{ errorMessage }}</p>
+
   </div>

@@ -14,6 +14,7 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
   errorMessage: string = '';
+  showError: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -23,10 +24,11 @@ export class LoginComponent {
       if (role === 'admin') {
         this.router.navigate(['/admin-dashboard']);
       } else {
-        this.router.navigate(['/user-dashboard']);
+        this.router.navigate(['/employee-list']);
       }
     } else {
       this.errorMessage = 'Invalid username or password';
+      this.showError = true;
     }
   }
 }
