@@ -44,6 +44,15 @@ export class EmployeeDetailsComponent implements OnInit {
       console.log('Employee: ' + this.employee);
       // TODO: use service to get employee by ID
     });
+
+    // if the user is not admin, grey out the delete button
+    if (this.authSerive.getRole() !== 'admin') {
+      const deleteButton = document.getElementById('delete-button');
+      if (deleteButton) {
+        deleteButton.setAttribute('disabled', 'true');
+        deleteButton.style.backgroundColor = 'grey';
+      }
+    }
   }
 
 
@@ -73,7 +82,7 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   deleteEmployee() {
-    //if (this.authSerive.getRole() === 'admin') {
+    if (this.authSerive.getRole() === 'admin') {
       this.backendService.deleteEmployee(this.id, this.token).subscribe({
         next: (next) => {
           console.log('Employee deleted');
@@ -84,7 +93,7 @@ export class EmployeeDetailsComponent implements OnInit {
           console.error(error);
         }
       });
-   // }
+    }
   }
 
 
