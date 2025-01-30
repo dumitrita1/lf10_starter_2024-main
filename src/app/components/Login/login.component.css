@@ -1,15 +1,15 @@
-.contact{
+div{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.contact-form-title{
+h2{
     font-size: 100px;
     font-family: "Just Me Again Down Here", serif;
 }
 
-.contact-form {
+form {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -39,7 +39,7 @@ p {
     color: red;
     margin-top: 10px;
 }
-.btn{
+button{
     width: 600px;
     height: 65px;
     background: #4FADF9;
@@ -47,6 +47,6 @@ p {
     color: white;
 }
 
-.btn:hover {
+button:hover {
     background-color: #448eca;
 }

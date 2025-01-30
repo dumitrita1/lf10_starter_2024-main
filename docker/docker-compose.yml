@@ -15,7 +15,7 @@ services:
       POSTGRES_USER: employee
       POSTGRES_PASSWORD: secret
     ports:
-      - "5432:5432"
+      - "5433:5432"
 
   employee:
     container_name: employee

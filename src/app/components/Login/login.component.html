@@ -1,13 +1,12 @@
-<div class="contact">
-    <h2 class="contact-form-title">HiTec GmbH</h2>
-    <form class ="contact-form" (ngSubmit)="login()">
+<div >
+    <h2> HiTec GmbH </h2>
+    <form (ngSubmit)="login()">
       <input [(ngModel)]="username" id="username" name="username" required />
       <label for="username">Username:</label>
       <input [(ngModel)]="password" id="password" name="password" type="password" required />
       <label for="password">Password:</label>
-      <button class="btn" type="submit">Einloggen</button>
+      <button type="submit">Einloggen</button>
     </form>
     
     <p [hidden]="!showError">{{ errorMessage }}</p>
-
-  </div>
+</div>
