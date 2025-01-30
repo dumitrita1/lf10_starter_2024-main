@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable, tap} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +18,31 @@ export class BackendService {
     });
   }
 
-  getEmployeeById(id: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/employees/${id}`);
+  getEmployeeById(id: number, bearer: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/employees/${id}`, {
+      headers: {
+        Authorization: `Bearer ${bearer}`
+      }
+    });
   }
+  deleteEmployee(id: number, bearer: string): Observable<any> {
+    console.log(`Attempting to delete employee with ID: ${id}`);
 
-  // Add other methods to interact with your backend API
+    return this.http.delete(`${this.apiUrl}/employees/${id}`, {
+      headers: {
+        Authorization: `Bearer ${bearer}`
+      }
+    }).pipe(
+      tap({
+        next: (response) => {
+          console.log(`Successfully deleted employee with ID: ${id}`);
+          console.log('Response:', response);
+        },
+        error: (error) => {
+          console.error(`Failed to delete employee with ID: ${id}`);
+          console.error('Error:', error);
+        }
+      })
+    );
+  }
 }

@@ -21,6 +21,9 @@ export const appRoutes: Routes = [
   },
   {
     path: 'employee/:id', component: EmployeeDetailsComponent,
+  },
+  {
+    path: 'employee-list', component: EmployeeListComponent,
   }
   ]
 
