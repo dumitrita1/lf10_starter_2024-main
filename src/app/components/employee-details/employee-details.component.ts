@@ -1,6 +1,5 @@
 import {ActivatedRoute, Router} from "@angular/router";
 import {Component, OnInit} from "@angular/core";
-import {NavbarComponent} from "../navbar/navbar.component";
 import {BackendService} from "../../backend.service";
 import {KeycloakService} from "../../keycloak.service";
 import {AuthService} from "../../service/auth.service";
@@ -12,7 +11,6 @@ import {NgOptimizedImage} from "@angular/common";
   templateUrl: './employee-details.component.html',
   standalone: true,
   imports: [
-    NavbarComponent,
     NgOptimizedImage
   ],
   styleUrls: ['./employee-details.component.css']

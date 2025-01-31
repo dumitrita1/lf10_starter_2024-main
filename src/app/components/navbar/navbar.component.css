@@ -10,3 +10,7 @@ header{
   color: #333;
   font-size: 80px;
 }
+nav{
+  display: flex;
+  gap: 20px;
+}
