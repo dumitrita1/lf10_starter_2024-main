@@ -1,51 +1,45 @@
-.new-employee-container{
- margin-top: 100px;
-  width: 600px;
+form {
+  width: 50%;
+  margin: auto;
+  padding: 20px;
 }
 
-.new-employee-container .new-employee{
-  width: 100%;
+div {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #4FADF9;
 }
 
-.new-employee-container .new-employee table{
-  width: 100%;
-  margin-bottom: 20px;
-  background-color: var(--primary-color);
+label {
+  width: 20%;
+  font-weight: bold;
+  background-color: #4FADF9;
+  color: #fff;
+  padding: 10px;
+
 }
 
-.new-employee-container .new-employee table tr th{
-  background-color: var(--primary-color);
-  color: var(--primary-white-color);
-  font-weight: normal;
-  padding: 6px 4px;
-  width: 30%;
-  border-bottom: 1px solid var(--primary-white-color);
-}
-
-.new-employee-container .new-employee table td{
-  width: 100%;
-}
-
-.new-employee-container .new-employee table tr td input[type="text"],
-.new-employee-container .new-employee table tr td input[type="tel"]
-{
-  border: 1px solid var(--primary-color);
-  padding: 6px 4px;
-  border-left: none;
+input {
+  width: 80%;
+  font-size: 20px;
   outline: none;
-  width: 99%;
-  margin: -2px;
-  border-bottom: 8px solid var(--primary-white-color);
-  color: var(--primary-color);
+  margin-left: 10px;
 }
 
-.new-employee button[type="submit"]{
-  color: var(--primary-white-color);
-  background-color: var(--primary-color);
-  border-radius: 10px;
-  padding: 8px 10px;
+button{
+  width: 140px;
+  color: #fff;
+  background-color: #4FADF9;
+  border-radius: 15px;
+  padding: 10px;
   outline: none;
   float: right;
   border: none;
   font-family: var( --primary-font);
+  cursor: pointer;
+}
+button:hover{
+  background-color: #0782e7;
 }
