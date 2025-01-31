@@ -1,14 +1,14 @@
-<app-navbar />
-
-<h2 class="quote nav nav-btn ">Menschen, die gern gute Sachen machen</h2>
-
-<div class="employees-container">
-  <div *ngFor="let skill of groupedEmployees | keyvalue" class="skill-group">
-    <h3 class="skill-group-title">{{ skill.key }}</h3>
-    <div class="employee-cards">
-      <app-employee-card class="employee-card-instance" [employee]="employee" *ngFor="let employee of skill.value"></app-employee-card>
+<section>
+  <h2>Menschen, die gern gute Sachen machen</h2>
+  <div class="employees-container">
+    <div *ngFor="let skill of groupedEmployees | keyvalue" class="skill-group">
+      <h3 >{{ skill.key }}</h3>
+      <div class="employee-cards">
+        <app-employee-card class="employee-card-instance" [employee]="employee" *ngFor="let employee of skill.value"></app-employee-card>
+      </div>
     </div>
   </div>
-</div>
+</section>
+
 
 <app-logout-footer />

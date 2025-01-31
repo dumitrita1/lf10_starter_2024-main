@@ -23,7 +23,7 @@ export class LoginComponent {
     if (this.authService.login(this.username, this.password)) {
       const role = this.authService.getRole();
       if (role === 'admin') {
-        this.router.navigate(['/admin-dashboard']);
+        this.router.navigate(['/employee-list']);
       } else {
         this.router.navigate(['/employee-list']);
       }
