@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Observable, of} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Employee} from "../Employee/Employee";
+import Employee from "../Employee/Employee";
 import {EmployeeCardComponent} from "./employee-card/employee-card.component";
 import {employees} from "./dummy-model/DummyData";
 import {NavbarComponent} from "../navbar/navbar.component";
@@ -22,6 +22,7 @@ export class EmployeeListComponent implements OnInit {
   employeesToDisplay: any;
   groupedEmployees: { [key: string]: Employee[] } = {};
   bearer: Promise<string>;
+
   constructor(private http: HttpClient,
               private backendService: BackendService,
               private keycloakService: KeycloakService) {
@@ -40,25 +41,29 @@ export class EmployeeListComponent implements OnInit {
     console.log(this.employees$);
   }
 
-  groupEmployeesBySkill(employees: any[]) {
+  groupEmployeesBySkill(employees: Employee[]) {
     const grouped: { [key: string]: Employee[] } = {};
     employees.forEach(employee => {
-      employee.skillSet.forEach((skill: { skill: string | number; }) => {
-        if (!grouped[skill.skill]) {
-          grouped[skill.skill] = [];
-        }
-        grouped[skill.skill].push(employee);
-      });
+      if (employee.skillSet) {
+        employee.skillSet.forEach((skill: string) => {
+          if (grouped[skill]) {
+            grouped[skill].push(employee);
+          } else {
+            grouped[skill] = [employee];
+          }
+        });
+      }
     });
     this.groupedEmployees = grouped;
   }
 
+
+
   async ngOnInit(): Promise<void> {
     console.log("is logged in: " + this.keycloakService.isLoggedIn());
     this.backendService.getEmployees(await this.bearer).subscribe({
-      next: (next) => {
-        this.employees$ = next;
-        this.employeesToDisplay = this.employees$;
+      next: (employees: Employee[]) => {
+        this.employeesToDisplay = employees;
         this.groupEmployeesBySkill(this.employeesToDisplay);
         console.log(this.groupedEmployees);
       },
@@ -67,4 +72,5 @@ export class EmployeeListComponent implements OnInit {
       }
     });
   }
+
 }

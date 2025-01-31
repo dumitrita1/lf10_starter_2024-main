@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Router} from "@angular/router";
+import {Component, OnInit} from "@angular/core";
 import {NavbarComponent} from "../navbar/navbar.component";
+import {LogoutFooterComponent} from "./logout-footer/logout-footer.component";
 import {BackendService} from "../../backend.service";
 import {KeycloakService} from "../../keycloak.service";
 import {AuthService} from "../../service/auth.service";
-import {LogoutFooterComponent} from "./logout-footer/logout-footer.component";
+import Employee from "../Employee/Employee";
+import {NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-employee-details',
@@ -12,41 +14,62 @@ import {LogoutFooterComponent} from "./logout-footer/logout-footer.component";
   standalone: true,
   imports: [
     NavbarComponent,
-    LogoutFooterComponent
+    LogoutFooterComponent,
+    NgOptimizedImage
   ],
   styleUrls: ['./employee-details.component.css']
 })
 export class EmployeeDetailsComponent implements OnInit {
-
-  employee: any;
+  employee: Employee;
   id = 0;
   token = "";
+  dummyImages = [
+    "assets/dummyimages/profile1.png",
+    "assets/dummyimages/profile2.png",
+    "assets/dummyimages/profile3.png",
+  ]
 
-  constructor(private router: Router,private route: ActivatedRoute, public backendService: BackendService, public keycloakService: KeycloakService, public authSerive: AuthService) {
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    public backendService: BackendService,
+    public keycloakService: KeycloakService,
+    public authService: AuthService
+  ) {
     this.employee = {};
   }
 
   async ngOnInit() {
-    this.token = await this.keycloakService.getToken();
-    this.route.params.subscribe(params => {
-      const id = params['id'];
-      this.id = id;
-      this.backendService.getEmployeeById(id, this.token).subscribe({
-        next: (next) => {
-          this.employee = next;
-          console.log(this.employee);
-        },
-        error: (error) => {
-          console.error(error);
-        }
+    try {
+      this.token = await this.keycloakService.getToken();
+      this.route.params.subscribe(params => {
+        const id = params['id'];
+        this.id = id;
+        this.loadEmployeeData(id);
       });
-      // Hier dann Mitarbeiterdaten laden
-      console.log('Employee: ' + this.employee);
-      // TODO: use service to get employee by ID
-    });
 
-    // if the user is not admin, grey out the delete button
-    if (this.authSerive.getRole() !== 'admin') {
+      this.updateDeleteButton();
+    } catch (error) {
+      console.error('Error in initialization:', error);
+    }
+  }
+
+  private loadEmployeeData(id: number) {
+    this.backendService.getEmployeeById(id, this.token).subscribe({
+      next: (response) => {
+        if (response) {
+          this.employee = response;
+          console.log('Employee loaded:', this.employee);
+        }
+      },
+      error: (error) => {
+        console.error('Error loading employee:', error);
+      }
+    });
+  }
+
+  private updateDeleteButton() {
+    if (this.authService.getRole() !== 'admin') {
       const deleteButton = document.getElementById('delete-button');
       if (deleteButton) {
         deleteButton.setAttribute('disabled', 'true');
@@ -55,46 +78,57 @@ export class EmployeeDetailsComponent implements OnInit {
     }
   }
 
-
-
-
-  employeeName() {
-    return `${this.employee.firstName} ${this.employee.lastName}`;
+  employeeName(): string {
+    return this.employee?.firstName && this.employee?.lastName
+      ? `${this.employee.firstName} ${this.employee.lastName}`
+      : 'N/A';
   }
 
-  employeeDescription() {
-    return `${this.employee.street}, ${this.employee.postcode} ${this.employee.city}.`;
+  employeeDescription(): string {
+    return this.employee?.street && this.employee?.postcode && this.employee?.city
+      ? `${this.employee.street}, ${this.employee.postcode} ${this.employee.city}`
+      : 'N/A';
   }
 
-  employeeDepartment() {
-    return this.employee.skillSet.map((skill: { skill: any; }) => skill.skill).join(', ');
-  }
+  employeeSkillset(): string {
+    if (!this.employee?.skillSet || !Array.isArray(this.employee.skillSet)) {
+      return 'Keine Qualifikationen angegeben';
+    }
 
-
-  employeePhonenumber() {
-    return this.employee.phone;
-  }
-
-  // Buttons
-  addFavorite() {
-    // Platzhalter
-    console.log('Adding to favorites');
-  }
-
-  deleteEmployee() {
-    if (this.authSerive.getRole() === 'admin') {
-      this.backendService.deleteEmployee(this.id, this.token).subscribe({
-        next: (next) => {
-          console.log('Employee deleted');
-          // go to employee-list page
-          this.router.navigate(['/employee-list']);
-        },
-        error: (error) => {
-          console.error(error);
-        }
-      });
+    try {
+      return this.employee.skillSet.join(', ') || 'Keine Qualifikationen angegeben';
+    } catch (error) {
+      console.error('Error processing skillSet:', error);
+      return 'Fehler beim Verarbeiten der Qualifikationen';
     }
   }
 
+  employeePhonenumber(): string {
+    return this.employee?.phone ?? 'Keine Telefonnummer angegeben';
+  }
 
+  employeeProfileImage(): string {
+    return this.dummyImages[Math.floor(Math.random() * this.dummyImages.length)];
+  }
+
+  addFavorite(): void {
+    console.log('Adding to favorites');
+  }
+
+  deleteEmployee(): void {
+    if (this.authService.getRole() !== 'admin') {
+      console.warn('Unauthorized delete attempt');
+      return;
+    }
+
+    this.backendService.deleteEmployee(this.id, this.token).subscribe({
+      next: () => {
+        console.log('Employee deleted successfully');
+        this.router.navigate(['/employee-list']);
+      },
+      error: (error) => {
+        console.error('Error deleting employee:', error);
+      }
+    });
+  }
 }
