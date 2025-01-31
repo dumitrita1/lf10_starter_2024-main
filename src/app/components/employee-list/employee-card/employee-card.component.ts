@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Employee } from "../dummy-model/EmployeeDummy";
-import {NgIf} from "@angular/common";
+import {NgIf, NgOptimizedImage} from "@angular/common";
 import {Router} from "@angular/router";
 
 interface ColorConfig {
@@ -18,7 +18,8 @@ interface ColorSet {
   selector: 'app-employee-card',
   standalone: true,
   imports: [
-    NgIf
+    NgIf,
+    NgOptimizedImage
   ],
   templateUrl: './employee-card.component.html',
   styleUrl: './employee-card.component.css'
@@ -34,9 +35,20 @@ export class EmployeeCardComponent implements OnInit {
     id: 1
   };
 
+  dummyImages = [
+    "assets/dummyimages/profile1.png",
+    "assets/dummyimages/profile2.png",
+    "assets/dummyimages/profile3.png",
+  ]
+
   constructor(private router: Router) {
     this.router = router;
   }
+
+  employeeProfileImage(): string {
+    return this.dummyImages[Math.floor(Math.random() * this.dummyImages.length)];
+  }
+
 
   openEmployeeCard() {
     console.log('Open employee card');

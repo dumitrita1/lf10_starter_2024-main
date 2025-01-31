@@ -1,7 +1,7 @@
 <div class="employee-card" [style.backgroundColor]="colors.background" [style.color]="colors.text">
   <!-- Avatar -->
   <div class="employee-avatar">
-    <img *ngIf="employee.avatarUri" [src]="employee.avatarUri" alt="Employee Avatar">
+    <img fill [ngSrc]="employeeProfileImage()" alt="Employee Avatar">
   </div>
 
   <!-- Employee Details -->
