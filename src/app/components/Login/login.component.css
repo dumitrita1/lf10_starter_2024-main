@@ -30,6 +30,9 @@ input {
     background: transparent;
 
 }
+div{
+    margin-top: 10%;
+}
 
 input:focus {
     border-bottom: 2px solid black;

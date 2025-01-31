@@ -1,0 +1,54 @@
+section {
+    max-width: 1600px;
+    margin: 0 auto;
+}
+section, .employee-btn{
+    display: flex;
+    gap: 50px;
+}
+img{
+    width: 500px;
+    height: auto;
+    border-radius: 10px;
+}
+.empoloyee{
+    width: 100%;
+}
+.empoloyee-details{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 50px;
+}
+h2{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.employee-btn{
+    margin-top: 50px ;
+}
+
+.btn{
+    cursor: pointer;
+    border-radius: 10px;
+    color: #fff;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.fav-btn{
+    background-color: #46AE97 ;
+}
+.delete-btn{
+    background-color: #f62d17;
+}
+.fav-btn:hover{
+    background-color: #3c9683 ;
+}
+.delete-btn:hover{
+    background-color: #e30707;
+}

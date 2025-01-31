@@ -4,12 +4,14 @@ import { RouterOutlet } from '@angular/router';
 import {EmployeeListComponent} from "../employee-list/employee-list.component";
 import {NewEmployeeComponent} from "../Employee/new-employee/new-employee.component";
 import {AppAdminComponent} from "../Admin/app-admin/app-admin.component";
+import {NavbarComponent} from "../navbar/navbar.component";
+import {LogoutFooterComponent} from "../employee-details/logout-footer/logout-footer.component";
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet, NavbarComponent,LogoutFooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

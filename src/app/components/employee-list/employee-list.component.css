@@ -1,9 +1,10 @@
-.quote {
+section{
+  margin-top: 50px;
+}
+h2{
   font-family: "Just Me Again Down Here", serif;
   text-align: center;
-  font-size: 1.5rem;
-  font-weight: 500;
-  margin: 2rem 0;
+  font-size: 40px;
 }
 
 .employees-container {
@@ -30,7 +31,7 @@
   gap: 10px;
 }
 
-.skill-group-title {
+h3 {
   font-family: "Roboto", serif;
   font-weight: bolder;
   font-size: 1.25rem;
