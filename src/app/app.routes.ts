@@ -5,6 +5,7 @@ import { EmployeeDetailsComponent } from './components/employee-details/employee
 import {EmployeeListComponent} from "./components/employee-list/employee-list.component";
 import {SettingsComponent} from "./components/Settings/settings.component";
 import {QualificationsComponent} from "./components/Qualifications/qualifications.component";
+import {FavoriteComponent} from "./components/Favorite/favorite.component";
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -20,6 +21,9 @@ export const appRoutes: Routes = [
   },
   {
     path: 'qualifications', component: QualificationsComponent,
+  },
+  {
+    path: 'favorite', component: FavoriteComponent,
   }
   ]
 
