@@ -1,20 +1,17 @@
 <section>
-    <img [ngSrc]="employeeProfileImage()"/>
-      <div class="empoloyee">
-        <h2>{{ employeeName() }}</h2>
-        <div class="empoloyee-details">
-          <p>Adresse: {{ employeeDescription() }}</p>    <!-- dies sollte die Beschreibung sein, nicht die Adresse  -->
-          <p>Qualifikationen: {{ employeeSkillset()}}</p>
-          <p>Telefonnummer: {{ employeePhonenumber() }}</p>
-        </div>
-        <div class="employee-btn">
-          <a class="btn fav-btn" (click)="addFavorite()">
-            Favoriten hinzufügen
-          </a>
-          <a class="btn delete-btn" (click)="deleteEmployee()">
-            Mitarbeiter löschen
-          </a>
-        </div>
-      </div>
+  <img [ngSrc]="employeeProfileImage()" />
+  <div class="empoloyee">
+    <h2>{{ employeeName() }}</h2>
+    <div class="empoloyee-details">
+      <p>Adresse: {{ employeeDescription() }}</p>
+      <!-- dies sollte die Beschreibung sein, nicht die Adresse  -->
+      <p>Qualifikationen: {{ employeeSkillset() }}</p>
+      <p>Telefonnummer: {{ employeePhonenumber() }}</p>
+    </div>
+    <div class="employee-btn">
+      <a class="btn delete-btn" (click)="deleteEmployee()" id="delete-button">
+        Mitarbeiter löschen
+      </a>
+    </div>
+  </div>
 </section>
-

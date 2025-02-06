@@ -1,6 +1,7 @@
 section {
-    max-width: 1600px;
-    margin: 0 auto;
+    margin: 0 3rem;
+    display: flex;
+    justify-content: center;
 }
 section, .employee-btn{
     display: flex;
@@ -23,7 +24,7 @@ img{
     margin-top: 50px;
 }
 h2{
-    text-align: center;
+    text-align: left;
     font-size: 30px;
     font-weight: bold;
 }
@@ -51,4 +52,11 @@ h2{
 }
 .delete-btn:hover{
     background-color: #e30707;
+}
+
+@media (max-width: 600px) {
+    section,
+    .employee-btn {
+        flex-direction: column;
+    }
 }
