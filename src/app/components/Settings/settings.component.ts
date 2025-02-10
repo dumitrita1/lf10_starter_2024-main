@@ -6,7 +6,7 @@ import { NewEmployeeComponent } from '../../components/Employee/new-employee/new
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [RouterLink, NewEmployeeComponent],
+  imports: [NewEmployeeComponent],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.css',
 

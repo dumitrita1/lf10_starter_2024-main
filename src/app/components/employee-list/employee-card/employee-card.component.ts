@@ -18,7 +18,6 @@ interface ColorSet {
   selector: 'app-employee-card',
   standalone: true,
   imports: [
-    NgIf,
     NgOptimizedImage
   ],
   templateUrl: './employee-card.component.html',

@@ -7,7 +7,7 @@ import {SettingsComponent} from "./components/Settings/settings.component";
 import {QualificationsComponent} from "./components/Qualifications/qualifications.component";
 
 export const appRoutes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/employee-list', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
     path: 'employee/:id', component: EmployeeDetailsComponent,

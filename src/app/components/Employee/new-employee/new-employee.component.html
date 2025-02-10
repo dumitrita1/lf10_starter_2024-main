@@ -30,8 +30,8 @@
   </div>
 
   <div>
-    <label for="status">Status</label>
-    <input type="text" id="status" name="status" required>
+    <label for="city">Stadt</label>
+    <input type="text" id="city" name="city" [(ngModel)]="newEmployee.city" required>
   </div>
 
   <button type="submit">Speichern</button>
@@ -40,8 +40,8 @@
 <div class="added-employees" *ngIf="addedEmployees.length > 0">
   <h3>Hinzugefügte Mitarbeiter</h3>
   <div class="employee-cards">
-    <app-employee-card 
-      *ngFor="let employee of addedEmployees" 
+    <app-employee-card
+      *ngFor="let employee of addedEmployees"
       [employee]="employee">
     </app-employee-card>
   </div>
