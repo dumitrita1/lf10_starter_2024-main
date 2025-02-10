@@ -1,32 +1,32 @@
-<form (ngSubmit)="onSubmit()">
+<form action="">
   <div>
     <label for="name">Name</label>
-    <input type="text" id="name" name="name" [(ngModel)]="newEmployee.lastName" required>
+    <input type="text" id="name" name="name" required>
   </div>
 
   <div>
     <label for="vorname">Vorname</label>
-    <input type="text" id="vorname" name="vorname" [(ngModel)]="newEmployee.firstName" required>
+    <input type="text" id="vorname" name="vorname" required>
   </div>
 
   <div>
     <label for="strasse">Straße</label>
-    <input type="text" id="strasse" name="strasse" [(ngModel)]="newEmployee.street" required>
+    <input type="text" id="strasse" name="strasse" required>
   </div>
 
   <div>
     <label for="plz">Postleitzahl</label>
-    <input type="text" id="plz" name="plz" [(ngModel)]="newEmployee.postcode" required>
+    <input type="text" id="plz" name="plz" required>
   </div>
 
   <div>
     <label for="rufnummer">Rufnummer</label>
-    <input type="tel" id="rufnummer" name="rufnummer" [(ngModel)]="newEmployee.phone" required>
+    <input type="tel" id="rufnummer" name="rufnummer" required>
   </div>
 
   <div>
     <label for="qualifikation">Qualifikation</label>
-    <input type="text" id="qualifikation" name="qualifikation" [(ngModel)]="newEmployee.qualifications" required>
+    <input type="text" id="qualifikation" name="qualifikation" required>
   </div>
 
   <div>
@@ -34,15 +34,5 @@
     <input type="text" id="status" name="status" required>
   </div>
 
-  <button type="submit">Speichern</button>
+  <button  type="submit">Speichern</button>
 </form>
-
-<div class="added-employees" *ngIf="addedEmployees.length > 0">
-  <h3>Hinzugefügte Mitarbeiter</h3>
-  <div class="employee-cards">
-    <app-employee-card 
-      *ngFor="let employee of addedEmployees" 
-      [employee]="employee">
-    </app-employee-card>
-  </div>
-</div>
