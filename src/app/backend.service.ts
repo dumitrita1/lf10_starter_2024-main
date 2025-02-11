@@ -16,8 +16,8 @@ type EmployeeDto = {
   phone: string;
   skillSet: String[];
 }
-type QualificationDto = {
-  name: string;
+export type QualificationDto = {
+  skill: string;
 }
 
 @Injectable({
@@ -121,7 +121,9 @@ export class BackendService {
       }
     });
   }
+  // TODO error handling
   createQualification(qualification: QualificationDto, bearer: string): Observable<any> {
+    console.log("attempting to POST with: " + qualification);
     return this.http.post(`${this.apiUrl}/qualifications`, qualification, {
       headers: {
         Authorization: `Bearer ${bearer}`

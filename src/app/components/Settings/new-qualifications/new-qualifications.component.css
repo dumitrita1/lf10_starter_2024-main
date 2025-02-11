@@ -1,0 +1,46 @@
+/* TODO: fix css */
+form {
+  width: 50%;
+  margin: auto;
+  padding: 20px;
+}
+
+div {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #4FADF9;
+}
+
+label {
+  width: 20%;
+  font-weight: bold;
+  background-color: #4FADF9;
+  color: #fff;
+  padding: 10px;
+
+}
+
+input {
+  width: 80%;
+  font-size: 20px;
+  outline: none;
+  margin-left: 10px;
+}
+
+button{
+  width: 140px;
+  color: #fff;
+  background-color: #4FADF9;
+  border-radius: 15px;
+  padding: 10px;
+  outline: none;
+  float: right;
+  border: none;
+  font-family: var( --primary-font);
+  cursor: pointer;
+}
+button:hover{
+  background-color: #0782e7;
+}
