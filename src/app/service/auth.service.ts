@@ -1,36 +1,54 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  private tokenKey = 'authToken';
-  private roleKey = 'userRole';
+  private loggedIn = new BehaviorSubject<boolean>(this.getStoredAuth());
+  private role: string = this.getStoredRole();
 
-  constructor(private http: HttpClient, private router: Router) {}
-
-  login(username: string, password: string) {
-    return this.http.post('/api/login', { username, password }).subscribe((response: any) => {
-      localStorage.setItem(this.tokenKey, response.token);
-      localStorage.setItem(this.roleKey, response.role);
-    });
+  constructor() {
+    this.loggedIn.next(this.getStoredAuth());
   }
 
-  logout() {
-    localStorage.removeItem(this.tokenKey);
-    localStorage.removeItem(this.roleKey);
-    this.router.navigate(['/login']);
+  login(username: string, password: string): boolean {
+    if (username === 'admin' && password === 'admin123') {
+      this.setAuth(true, 'admin');
+      return true;
+    } else if (username === 'user' && password === 'user123') {
+      this.setAuth(true, 'user');
+      return true;
+    }
+    return false;
   }
 
-  getRole(): string {
-    return localStorage.getItem(this.roleKey) || '';
+  private setAuth(isLoggedIn: boolean, role: string) {
+    this.loggedIn.next(isLoggedIn);
+    this.role = role;
+    localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
+    localStorage.setItem('role', role);
   }
 
   isAuthenticated(): boolean {
-    const token = localStorage.getItem(this.tokenKey);
-    // Add logic to check token expiry
-    return !!token;
+    return this.loggedIn.value;
+  }
+
+  getRole(): string {
+    return this.role;
+  }
+
+  logout(): void {
+    this.setAuth(false, '');
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('role');
+  }
+
+  private getStoredAuth(): boolean {
+    return JSON.parse(localStorage.getItem('isLoggedIn') || 'false');
+  }
+
+  private getStoredRole(): string {
+    return localStorage.getItem('role') || '';
   }
 }

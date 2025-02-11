@@ -1,20 +1,20 @@
-import {Component, Input} from '@angular/core';
-import {Router} from "@angular/router";
+import { Component } from '@angular/core';
+import { Router } from "@angular/router";
+import { AuthService } from "../../../service/auth.service";
 
 @Component({
   selector: 'app-logout-footer',
   standalone: true,
   imports: [],
   templateUrl: './logout-footer.component.html',
-  styleUrl: './logout-footer.component.css'
+  styleUrls: ['./logout-footer.component.css']
 })
 export class LogoutFooterComponent {
 
-  constructor(private router: Router) {
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
   logout() {
-    // Platzhalter
+    this.authService.logout(); 
     this.router.navigate(['/login']);
   }
 }
