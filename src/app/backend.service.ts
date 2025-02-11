@@ -4,6 +4,7 @@ import {Observable, tap} from 'rxjs';
 import {Employee} from "./components/employee-list/dummy-model/EmployeeDummy";
 import {switchMap} from "rxjs/operators";
 import {throwError} from "rxjs";
+import {EmployeeCreation} from "./components/Employee/new-employee/new-employee.component";
 
 type EmployeeDto = {
   id: number;
@@ -72,7 +73,7 @@ export class BackendService {
       })
     );
   }
-  createEmployee(employee: Employee, bearer: string): Observable<any> {
+  createEmployee(employee: EmployeeCreation, bearer: string): Observable<any> {
     const employeeDto: EmployeeDto = {
       id: 0,
       firstName: employee.firstName ? employee.firstName : '',
@@ -81,7 +82,7 @@ export class BackendService {
       postcode: employee.postcode ? employee.postcode : '',
       city: employee.city ? employee.city : '',
       phone: employee.phone ? employee.phone : '',
-      skillSet: employee.qualifications ? employee.qualifications.map(q => q.name ? q.name : '') : []
+      skillSet: employee.qualifications ? employee.qualifications.split(',').map(q => q.trim()) : []
     };
 
     const quals = this.getQualifications(bearer);
@@ -90,14 +91,10 @@ export class BackendService {
         next: (response) => {
           console.log('Response:', response);
           const existingQuals = response.map((q: { skill: string }) => q.skill);
-          const newQuals = employee.qualifications ? employee.qualifications.filter(q => q.name && !existingQuals.includes(q.name)) : [];
-          newQuals.forEach(q => {
-            if (q.name) {
-              this.createQualification({ name: q.name }, bearer).subscribe((response) => {
-                console.log('Response:', response);
-              });
-            }
-          });
+          const invalidQuals = employeeDto.skillSet.filter(skill => !existingQuals.includes(skill));
+          if (invalidQuals.length > 0) {
+            throw new Error('Invalid qualifications given');
+          }
         },
         error: (error) => {
           console.error('Error fetching qualifications:', error);

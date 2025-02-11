@@ -37,12 +37,17 @@
   <button type="submit">Speichern</button>
 </form>
 
-<div class="added-employees" *ngIf="addedEmployees.length > 0">
-  <h3>Hinzugefügte Mitarbeiter</h3>
-  <div class="employee-cards">
-    <app-employee-card
-      *ngFor="let employee of addedEmployees"
-      [employee]="employee">
-    </app-employee-card>
+@if (errorMessage !== '') {
+  <div class="error-message">
+    {{ errorMessage }}
   </div>
+}
+
+<div class="added-employees" *ngIf="addedEmployees.length > 0">
+  <h3>Hinzugefügte Mitarbeiter: </h3>
+  <ul>
+    <li *ngFor="let employee of addedEmployees">
+      {{ employee.firstName }} {{ employee.lastName }}
+    </li>
+  </ul>
 </div>
