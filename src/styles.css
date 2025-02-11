@@ -13,15 +13,12 @@
 
 body{
   font-family: "Roboto", serif;
-  /*--primary-black-color: #213547;*/
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
   max-width: 1800px;
   width: 100%;
   width: 100vh;
-  height: 100%;
-  height: 100vh;
   margin: 0 auto;
 }
 .container{

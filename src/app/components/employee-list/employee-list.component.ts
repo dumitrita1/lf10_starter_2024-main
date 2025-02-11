@@ -20,6 +20,7 @@ export class EmployeeListComponent implements OnInit {
   employeesToDisplay: any;
   groupedEmployees: { [key: string]: Employee[] } = {};
   bearer: Promise<string>;
+skill: any;
 
   constructor(private http: HttpClient,
               private backendService: BackendService,

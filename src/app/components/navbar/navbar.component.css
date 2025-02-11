@@ -2,8 +2,7 @@ header{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 50px;
-  margin-top: 0;
+  padding:50px;
 }
 .logo {
   text-decoration: none;
