@@ -18,11 +18,11 @@ export class EmployeeDetailsComponent implements OnInit {
   id = 0;
   token = '';
   isError = false;
-  dummyImages = [
+  /*dummyImages = [
     'assets/dummyimages/profile1.png',
     'assets/dummyimages/profile2.png',
     'assets/dummyimages/profile3.png',
-  ];
+  ];*/
 
   constructor(
     private router: Router,
@@ -108,11 +108,12 @@ export class EmployeeDetailsComponent implements OnInit {
     return this.employee?.phone ?? 'Keine Telefonnummer angegeben';
   }
 
-  employeeProfileImage(): string {
+ /* employeeProfileImage(): string {
     return this.dummyImages[
       Math.floor(Math.random() * this.dummyImages.length)
     ];
   }
+  */
 
   addFavorite(): void {
     console.log('Adding to favorites');

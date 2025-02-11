@@ -34,19 +34,22 @@ export class EmployeeCardComponent implements OnInit {
     id: 1
   };
 
-  dummyImages = [
+  /*
+    dummyImages = [
     "assets/dummyimages/profile1.png",
     "assets/dummyimages/profile2.png",
     "assets/dummyimages/profile3.png",
-  ]
+  ]*/
 
   constructor(private router: Router) {
     this.router = router;
   }
 
+  /*
   employeeProfileImage(): string {
     return this.dummyImages[Math.floor(Math.random() * this.dummyImages.length)];
   }
+  */
 
 
   openEmployeeCard() {
