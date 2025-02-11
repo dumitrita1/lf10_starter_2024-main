@@ -13,17 +13,15 @@
 
 body{
   font-family: "Roboto", serif;
-  margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  max-width: 1800px;
-  width: 100%;
-  width: 100vh;
   margin: 0 auto;
 }
 .container{
-    max-width: 1800px;
+    width: 1800px;
     background-color: #F0FDFE;
+    display: block;
+    margin: 0 auto;
 }
 
 ul li{
