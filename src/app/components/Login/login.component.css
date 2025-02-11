@@ -3,6 +3,8 @@ div{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    padding-bottom: 10%;
 }
 h2{
     font-size: 100px;
@@ -30,9 +32,6 @@ input {
     background: transparent;
 
 }
-div{
-    padding-top: 10%;
-}
 
 input:focus {
     border-bottom: 2px solid black;
@@ -48,6 +47,7 @@ button{
     background: #4FADF9;
     border-radius: 10px;
     color: white;
+    
 }
 
 button:hover {

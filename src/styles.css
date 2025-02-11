@@ -22,7 +22,10 @@ body{
     background-color: #F0FDFE;
     display: block;
     margin: 0 auto;
+    height: 100%;
     height: 100vh;
+    height: auto;
+    
 }
 
 ul li{
