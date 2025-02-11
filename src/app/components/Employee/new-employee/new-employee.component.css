@@ -39,7 +39,26 @@ button{
   border: none;
   font-family: var( --primary-font);
   cursor: pointer;
+  margin-top: 50px;
 }
 button:hover{
   background-color: #0782e7;
+}
+.error-message{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.error-message-list{
+  color: red;
+  font-weight: bold;
+  list-style:disc;
+  margin-left: 20px;
+}
+.added-employees{
+  color: green;
+  font-weight: bold;
+}
+app-settings{
+  margin-bottom: 100px;
 }

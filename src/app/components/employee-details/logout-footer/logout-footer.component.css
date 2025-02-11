@@ -1,10 +1,8 @@
-div {
+a{
     max-width: 180px;
     width: 100%;
     background: #FFFFFF;
     border: 1px solid #B0DCFF;
-    right: 10%;
-    position: absolute;
     padding: 10px;
     text-align: center;
     cursor: pointer;
@@ -14,10 +12,7 @@ a {
     font-size: 20px;
     color: #4FADF9;
 }
-div:hover{
-    background: #B0DCFF;
-    
-}
 a:hover{
     color: #FFFFFF;
+    background-color: #B0DCFF;
 }

@@ -1,13 +1,15 @@
+
 .employee-card {
   padding: 1.5rem;
   padding-top: 4.5rem;
-  border-radius: 12px;
+  border-radius: 5px;
   background-color: #e6d5c3;
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
   margin-top: 50px; 
+  margin-bottom: 50px;
 }
 
 .employee-card:hover {

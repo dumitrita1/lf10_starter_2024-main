@@ -1,53 +1,82 @@
-import {Component, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {Employee, Qualification} from '../../employee-list/dummy-model/EmployeeDummy';
-import {EmployeeCardComponent} from '../../employee-list/employee-card/employee-card.component';
-import {BackendService} from "../../../backend.service";
-import {KeycloakService} from "../../../keycloak.service";
-import {throwError} from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { BackendService } from "../../../backend.service";
+import { KeycloakService } from "../../../keycloak.service";
+import { throwError } from "rxjs";
 
 export class EmployeeCreation {
-  constructor(public lastName?: string,
-              public firstName?: string,
-              public street?: string,
-              public postcode?: string,
-              public city?: string,
-              public phone?: string,
-              public qualifications?: string
-  ) {
-  }
+  constructor(
+    public lastName?: string,
+    public firstName?: string,
+    public street?: string,
+    public postcode?: string,
+    public city?: string,
+    public phone?: string,
+    public qualifications?: string
+  ) {}
 }
 
 @Component({
   selector: 'app-new-employee',
   standalone: true,
-  imports: [CommonModule, FormsModule, EmployeeCardComponent],
+  imports: [CommonModule, FormsModule],
   templateUrl: './new-employee.component.html',
-  styleUrl: './new-employee.component.css'
+  styleUrls: ['./new-employee.component.css']
 })
 export class NewEmployeeComponent implements OnInit {
   newEmployee: EmployeeCreation = new EmployeeCreation();
   addedEmployees: EmployeeCreation[] = [];
   token = "";
-  errorMessage = "";
+  errorMessages: string[] = [];
 
-  constructor(public backendService: BackendService, public keycloakService: KeycloakService) {
-
-  }
+  constructor(public backendService: BackendService, public keycloakService: KeycloakService) {}
 
   async ngOnInit() {
-
     try {
       this.token = await this.keycloakService.getToken();
     } catch (error) {
-      console.error('Error in initialization:', error);
+      console.error('Fehler bei der Initialisierung:', error);
     }
   }
 
-  onSubmit() {
+  validateForm(): boolean {
+    this.errorMessages = []; // Resetăm erorile
 
-    // Create a new employee object
+    if (!this.newEmployee.lastName) {
+      this.errorMessages.push('Nachname ist erforderlich.');
+    }
+    if (!this.newEmployee.firstName) {
+      this.errorMessages.push('Vorname ist erforderlich.');
+    }
+    if (!this.newEmployee.street) {
+      this.errorMessages.push('Straße ist erforderlich.');
+    }
+    if (!this.newEmployee.postcode) {
+      this.errorMessages.push('Postleitzahl ist erforderlich.');
+    } else if (!/^\d{5}$/.test(this.newEmployee.postcode)) {
+      this.errorMessages.push('Postleitzahl muss genau 5 Ziffern enthalten.');
+    }
+    if (!this.newEmployee.phone) {
+      this.errorMessages.push('Telefonnummer ist erforderlich.');
+    } else if (!/^\d{7,15}$/.test(this.newEmployee.phone)) {
+      this.errorMessages.push('Telefonnummer muss zwischen 7 und 15 Ziffern enthalten.');
+    }
+    if (!this.newEmployee.qualifications) {
+      this.errorMessages.push('Qualifikation ist erforderlich.');
+    }
+    if (!this.newEmployee.city) {
+      this.errorMessages.push('Stadt ist erforderlich.');
+    }
+
+    return this.errorMessages.length === 0; // Dacă nu sunt erori, returnează true
+  }
+
+  onSubmit() {
+    if (!this.validateForm()) {
+      return; // Oprim submit-ul dacă există erori
+    }
+
     const employee = new EmployeeCreation(
       this.newEmployee.lastName,
       this.newEmployee.firstName,
@@ -57,19 +86,17 @@ export class NewEmployeeComponent implements OnInit {
       this.newEmployee.phone,
       this.newEmployee.qualifications
     );
-    // TODO check for admin etc
-    console.log("Qualifications:", this.newEmployee.qualifications, " type:", typeof this.newEmployee.qualifications);
+
     this.backendService.createEmployee(employee, this.token).subscribe({
       next: (response) => {
-        console.log('Response:', response);
+        console.log('Antwort:', response);
         this.addedEmployees.push(employee);
         this.newEmployee = new EmployeeCreation();
-        this.errorMessage = "";
+        this.errorMessages = []; 
       },
       error: (err) => {
-        console.error('Error:', err);
-        throwError(() => new Error('Invalid qualification given'));
-        this.errorMessage = "Die Qualifikation(en) existiert nicht!";
+        console.error('Fehler:', err);
+        this.errorMessages.push('Die Qualifikation(en) existiert nicht!');
       }
     });
   }

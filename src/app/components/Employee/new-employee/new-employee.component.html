@@ -34,20 +34,16 @@
     <input type="text" id="city" name="city" [(ngModel)]="newEmployee.city" required>
   </div>
 
+    <ul class="error-message" *ngIf="errorMessages.length > 0">
+      <li class="error-message-list" *ngFor="let error of errorMessages">{{ error }}</li>
+    </ul>
+
+    <ul class="added-employees" *ngIf="addedEmployees.length > 0">
+      <li *ngFor="let employee of addedEmployees">
+        Sie haben erfolgreich einen Mitarbeiter hinzugefügt
+      </li>
+    </ul>
+
   <button type="submit">Speichern</button>
+
 </form>
-
-@if (errorMessage !== '') {
-  <div class="error-message">
-    {{ errorMessage }}
-  </div>
-}
-
-<div class="added-employees" *ngIf="addedEmployees.length > 0">
-  <h3>Hinzugefügte Mitarbeiter: </h3>
-  <ul>
-    <li *ngFor="let employee of addedEmployees">
-      {{ employee.firstName }} {{ employee.lastName }}
-    </li>
-  </ul>
-</div>
