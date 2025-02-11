@@ -4,8 +4,6 @@ import {Observable, of} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import Employee from "../Employee/Employee";
 import {EmployeeCardComponent} from "./employee-card/employee-card.component";
-import {employees} from "./dummy-model/DummyData";
-import {NavbarComponent} from "../navbar/navbar.component";
 import { BackendService } from '../../backend.service';
 import {KeycloakService} from "../../keycloak.service";
 import {LogoutFooterComponent} from "../employee-details/logout-footer/logout-footer.component";
@@ -13,7 +11,7 @@ import {LogoutFooterComponent} from "../employee-details/logout-footer/logout-fo
 @Component({
   selector: 'app-employee-list',
   standalone: true,
-  imports: [CommonModule, EmployeeCardComponent, NavbarComponent, LogoutFooterComponent],
+  imports: [CommonModule, EmployeeCardComponent, LogoutFooterComponent],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.css'
 })
@@ -44,7 +42,7 @@ export class EmployeeListComponent implements OnInit {
   groupEmployeesBySkill(employees: Employee[]) {
     const grouped: { [key: string]: Employee[] } = {};
     employees.forEach(employee => {
-      if (employee.skillSet) {
+      if (employee.skillSet && employee.skillSet.length > 0) {
         employee.skillSet.forEach((skill: string) => {
           if (grouped[skill]) {
             grouped[skill].push(employee);
@@ -52,6 +50,12 @@ export class EmployeeListComponent implements OnInit {
             grouped[skill] = [employee];
           }
         });
+      } else {
+        if (grouped['No Qualifications']) {
+          grouped['No Qualifications'].push(employee);
+        } else {
+          grouped['No Qualifications'] = [employee];
+        }
       }
     });
     this.groupedEmployees = grouped;

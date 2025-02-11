@@ -9,9 +9,9 @@ export class AuthService {
   private role: string = this.getStoredRole();
 
   constructor() {
-    this.loggedIn.next(this.getStoredAuth()); 
+    this.loggedIn.next(this.getStoredAuth());
   }
-  
+
   login(username: string, password: string): boolean {
     if (username === 'admin' && password === 'admin123') {
       this.setAuth(true, 'admin');

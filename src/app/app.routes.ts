@@ -8,8 +8,8 @@ import { SettingsComponent } from "./components/Settings/settings.component";
 import { QualificationsComponent } from "./components/Qualifications/qualifications.component";
 
 export const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent }, 
-  
+  { path: 'login', component: LoginComponent },
+
   { path: 'employee/:id', component: EmployeeDetailsComponent, canActivate: [authGuard] },
   { path: 'employee-list', component: EmployeeListComponent, canActivate: [authGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [authGuard] },
@@ -18,7 +18,4 @@ export const appRoutes: Routes = [
   { path: '', redirectTo: '/employee-list', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' },
 ];
-
-  
-  
 
