@@ -11,6 +11,13 @@ h2{
 .form-group {
   margin-bottom: 15px;
 }
+.form-name{
+  display: flex;
+  gap: 10px;
+}
+.form-name div{
+  width: 100%;
+}
 
 label {
   display: block;

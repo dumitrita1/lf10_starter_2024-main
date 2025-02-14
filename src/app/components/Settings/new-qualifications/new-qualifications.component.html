@@ -1,11 +1,11 @@
-<form (ngSubmit)="onSubmit()">
-  <div>
+<form (ngSubmit)="onSubmit()" class="form-container">
+  <div form-group>
     <label for="qualifikation">Qualifikation</label>
     <input type="text" id="qualifikation" name="qualifikation" [(ngModel)]="qualificationCreation" required>
   </div>
   <p>
     {{message}}
   </p>
-  <button type="submit">Speichern</button>
+  <button class="button-group" type="submit">Speichern</button>
 </form>
 

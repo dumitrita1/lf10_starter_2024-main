@@ -1,14 +1,16 @@
-<div class="container mt-4">
+<section>
   <h2>Mitarbeiter bearbeiten</h2>
   <div class="form-container">
     <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="firstName">Vorname</label>
-        <input id="firstName" type="text" formControlName="firstName">
-      </div>
-      <div class="form-group">
-        <label for="lastName">Nachname</label>
-        <input id="lastName" type="text" formControlName="lastName">
+      <div class="form-group form-name">
+        <div>
+          <label for="firstName">Vorname</label>
+          <input id="firstName" type="text" formControlName="firstName">
+        </div>
+        <div>
+          <label for="lastName">Nachname</label>
+          <input id="lastName" type="text" formControlName="lastName">
+        </div>
       </div>
       <div class="form-group">
         <label for="street">Straße</label>
@@ -36,4 +38,4 @@
       </div>
     </form>
   </div>
-</div> 
+</section> 
