@@ -10,9 +10,9 @@ a{
 }
 a {
     font-size: 20px;
-    color: #4FADF9;
+    color: #007bff;
 }
 a:hover{
     color: #FFFFFF;
-    background-color: #B0DCFF;
+    background-color: #007bff;
 }

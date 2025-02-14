@@ -3,37 +3,37 @@
   <div class="form-group form-name">
     <div>
       <label for="name">Name</label>
-      <input type="text" id="name" name="name" [(ngModel)]="newEmployee.lastName" required>
+      <input type="text" id="name" name="name" [(ngModel)]="newEmployee.lastName" placeholder=" John" required>
     </div>
     <div>
       <label for="vorname">Vorname</label>
-      <input type="text" id="vorname" name="vorname" [(ngModel)]="newEmployee.firstName" required>
+      <input type="text" id="vorname" name="vorname" [(ngModel)]="newEmployee.firstName" placeholder="Ratzenberger"required>
     </div>
   </div>
 
   <div class="form-group">
     <label for="strasse">Straße</label>
-    <input type="text" id="strasse" name="strasse" [(ngModel)]="newEmployee.street" required>
+    <input type="text" id="strasse" name="strasse" [(ngModel)]="newEmployee.street" placeholder="Bremer Str 8" required>
   </div>
 
   <div class="form-group">
     <label for="plz">Postleitzahl</label>
-    <input type="text" id="plz" name="plz" [(ngModel)]="newEmployee.postcode" required>
+    <input type="text" id="plz" name="plz" [(ngModel)]="newEmployee.postcode" placeholder="Postleitzahl muss genau 5 Ziffern enthalten zb: 27753" required>
   </div>
 
   <div class="form-group">
     <label for="rufnummer">Rufnummer</label>
-    <input type="tel" id="rufnummer" name="rufnummer" [(ngModel)]="newEmployee.phone" required>
+    <input type="tel" id="rufnummer" name="rufnummer" [(ngModel)]="newEmployee.phone"  placeholder="Telefonnummer muss zwischen 7 und 15 Ziffern enthalten." required>
   </div>
 
   <div class="form-group">
     <label for="qualifikation">Qualifikation</label>
-    <input type="text" id="qualifikation" name="qualifikation" [(ngModel)]="newEmployee.qualifications" required>
+    <input type="text" id="qualifikation" name="qualifikation" [(ngModel)]="newEmployee.qualifications"  placeholder="zb: Java, Angular" required>
   </div>
 
   <div class="form-group">
     <label for="city">Stadt</label>
-    <input type="text" id="city" name="city" [(ngModel)]="newEmployee.city" required>
+    <input type="text" id="city" name="city" [(ngModel)]="newEmployee.city" placeholder="Bremen" required>
   </div>
 
     <ul class="error-message" *ngIf="errorMessages.length > 0">
