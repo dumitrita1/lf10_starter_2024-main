@@ -7,7 +7,7 @@ import { Employee } from '../models/employee';
   providedIn: 'root'
 })
 export class EmployeeService {
-  private apiUrl = 'api/employees'; // Replace with your actual API endpoint
+  private apiUrl = 'api/employees';
 
   constructor(private http: HttpClient) { }
 

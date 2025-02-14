@@ -4,14 +4,12 @@ import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 
 @NgModule({
   declarations: [
-    // ... other components
     EditEmployeeComponent
   ],
   imports: [
-    // ... other imports
     ReactiveFormsModule,
     HttpClientModule
   ],
-  // ...
+
 })
 export class AppModule { } 

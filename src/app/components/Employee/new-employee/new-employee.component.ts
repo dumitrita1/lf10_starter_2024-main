@@ -41,7 +41,7 @@ export class NewEmployeeComponent implements OnInit {
   }
 
   validateForm(): boolean {
-    this.errorMessages = []; // Resetăm erorile
+    this.errorMessages = []; 
 
     if (!this.newEmployee.lastName) {
       this.errorMessages.push('Nachname ist erforderlich.');
@@ -69,12 +69,12 @@ export class NewEmployeeComponent implements OnInit {
       this.errorMessages.push('Stadt ist erforderlich.');
     }
 
-    return this.errorMessages.length === 0; // Dacă nu sunt erori, returnează true
+    return this.errorMessages.length === 0; 
   }
 
   onSubmit() {
     if (!this.validateForm()) {
-      return; // Oprim submit-ul dacă există erori
+      return; 
     }
 
     const employee = new EmployeeCreation(

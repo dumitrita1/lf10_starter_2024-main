@@ -51,8 +51,6 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   openEditEmployee() {
-    console.log('Open employee card');
-    // navigate to edit-employee
     this.router.navigate(['/edit-employee', this.employee.id]);
   }
 

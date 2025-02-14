@@ -20,7 +20,7 @@ export class KeycloakService {
   init(): Promise<any> {
     return this.keycloakAuth.init({
       onLoad: 'login-required',
-      checkLoginIframe: false // Disable iframe checks which can cause CORS issues
+      checkLoginIframe: false 
     });
   }
 
@@ -30,8 +30,6 @@ export class KeycloakService {
 
   getToken(): Promise<string> {
     const url = 'https://keycloak.szut.dev/auth/realms/szut/protocol/openid-connect/token';
-
-    // Set up headers properly for the token request
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .set('Accept', 'application/json');
@@ -46,7 +44,7 @@ export class KeycloakService {
     return lastValueFrom(
       this.http.post<any>(url, body, {
         headers,
-        withCredentials: true // Enable sending credentials if needed
+        withCredentials: true 
       })
     ).then(response => {
       if (response && response.access_token) {
