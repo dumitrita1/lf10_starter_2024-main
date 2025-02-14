@@ -4,13 +4,14 @@ import { BackendService } from '../../backend.service';
 import { KeycloakService } from '../../keycloak.service';
 import { AuthService } from '../../service/auth.service';
 import Employee from '../Employee/Employee';
-import { NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
   standalone: true,
-  imports: [NgOptimizedImage],
+  imports: [CommonModule, FormsModule],
   styleUrls: ['./employee-details.component.css'],
 })
 export class EmployeeDetailsComponent implements OnInit {
@@ -47,6 +48,12 @@ export class EmployeeDetailsComponent implements OnInit {
     } catch (error) {
       console.error('Error in initialization:', error);
     }
+  }
+
+  openEditEmployee() {
+    console.log('Open employee card');
+    // navigate to edit-employee
+    this.router.navigate(['/edit-employee', this.employee.id]);
   }
 
   private loadEmployeeData(id: number) {

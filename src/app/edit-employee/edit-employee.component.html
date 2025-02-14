@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <h2>Mitarbeiter bearbeiten</h2>
+  <div class="form-container">
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="firstName">Vorname</label>
+        <input id="firstName" type="text" formControlName="firstName">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Nachname</label>
+        <input id="lastName" type="text" formControlName="lastName">
+      </div>
+      <div class="form-group">
+        <label for="street">Straße</label>
+        <input id="street" type="text" formControlName="street">
+      </div>
+      <div class="form-group">
+        <label for="postcode">PLZ</label>
+        <input id="postcode" type="text" formControlName="postcode">
+      </div>
+      <div class="form-group">
+        <label for="city">Stadt</label>
+        <input id="city" type="text" formControlName="city">
+      </div>
+      <div class="form-group">
+        <label for="phone">Telefon</label>
+        <input id="phone" type="text" formControlName="phone">
+      </div>
+      <div class="form-group">
+        <label for="skillSet">Qualifikationen (kommagetrennt)</label>
+        <input id="skillSet" type="text" formControlName="skillSet">
+      </div>
+      <div class="button-group">
+        <button type="submit" [disabled]="!employeeForm.valid">Speichern</button>
+        <button type="button" (click)="router.navigate(['/employee', employeeId])">Abbrechen</button>
+      </div>
+    </form>
+  </div>
+</div> 

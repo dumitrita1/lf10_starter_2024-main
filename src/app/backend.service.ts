@@ -130,4 +130,11 @@ export class BackendService {
       }
     });
   }
+  editEmployee(id: number, employee: any, bearer: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/employees/${id}`, employee, {
+      headers: {
+        Authorization: `Bearer ${bearer}`
+      }
+    });
+  }
 }
