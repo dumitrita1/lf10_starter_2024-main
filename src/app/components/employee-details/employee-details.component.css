@@ -1,63 +1,127 @@
 section {
-    margin: 0 3rem;
+    margin: 0 2rem;
     display: flex;
     justify-content: center;
     margin-top: 50px;
+    flex-wrap: wrap;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    padding: 50px;
 }
-section, .employee-btn{
+
+section, .employee-btn {
     display: flex;
-    gap: 50px;
+    gap: 25px;
 }
-img{
-    max-width: 400px;
+
+img {
+    max-width: 350px;
     height: auto;
-    border-radius: 10px;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
-.empoloyee{
+
+img:hover {
+    transform: scale(1.05);
+}
+
+.empoloyee {
     width: 100%;
-}
-.empoloyee-details{
+    max-width: 550px;
     display: flex;
     flex-direction: column;
-    gap:20px;
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 50px;
+
+    padding: 20px;
+
+    overflow: hidden;
 }
-h2{
+
+.empoloyee-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 20px;
+    color: #555;
+}
+
+h2 {
     text-align: left;
-    font-size: 30px;
-    font-weight: bold;
+    font-size: 28px;
+    font-weight: 600;
+    color: #4A4A4A;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
 }
 
-.employee-btn{
-    margin-top: 50px ;
+.phone-link{
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    color: #007BFF; 
+    text-decoration: none; 
+  }
+  
+.phone-link:hover {
+    color: #28a745;
+ 
+  }
+  
+  
+
+.employee-btn {
+    margin-top: 25px;
+    gap: 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
-.btn{
+.btn {
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 25px;
     color: #fff;
-    padding: 10px;
-    font-size: 20px;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    box-sizing: border-box;
 }
 
-.edit-btn{
-    background-color: #46AE97 ;
+.edit-btn {
+    background-color: #46AE97;
 }
-.delete-btn{
+
+.delete-btn {
     background-color: #f62d17;
 }
-.edit-btn:hover{
-    background-color: #3c9683 ;
+
+.edit-btn:hover {
+    background-color: #3c9683;
+    transform: translateY(3px);
 }
-.delete-btn:hover{
+
+.delete-btn:hover {
     background-color: #e30707;
+    transform: translateY(3px);
 }
 
 @media (max-width: 600px) {
     section,
     .employee-btn {
         flex-direction: column;
+    }
+
+    .empoloyee-details {
+        font-size: 16px;
+    }
+    
+    .btn {
+        font-size: 16px;
+        padding: 10px 15px;
     }
 }

@@ -6,7 +6,7 @@
       <p>Adresse: {{ employeeDescription() }}</p>
       <!-- dies sollte die Beschreibung sein, nicht die Adresse  -->
       <p>Qualifikationen: {{ employeeSkillset() }}</p>
-      <p>Telefonnummer: {{ employeePhonenumber() }}</p>
+      <a href="tel:{{ employeePhonenumber() }}" class="phone-link">Telefonnummer: {{ employeePhonenumber() }}</a>
     </div>
     <div class="employee-btn">
       <a class="btn edit-btn" (click)="openEditEmployee()" >

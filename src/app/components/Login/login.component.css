@@ -1,55 +1,95 @@
-div{
+div {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     padding-bottom: 10%;
+    background-color: #f7f7f7;
 }
-h2{
-    font-size: 100px;
+
+h2 {
+    font-size: 80px;
     font-family: "Just Me Again Down Here", serif;
+    color: #333;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
 }
 
 form {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 100%;
+    max-width: 500px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 label {
     font-size: 16px;
-    margin-bottom: 50px;
+    color: #333;
+    margin-bottom: 10px;
 }
 
 input {
     width: 100%;
     border: none;
-    border-bottom: 2px solid #666;
-    padding: 8px;
+    border-bottom: 2px solid #ccc;
+    padding: 10px 8px;
     font-size: 18px;
     outline: none;
     background: transparent;
-
+    margin-bottom: 20px;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
 }
 
 input:focus {
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #46AE97;
+    transition: border-color 0.3s ease;
 }
 
 p {
     color: red;
     margin-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
 }
-button{
-    width: 600px;
-    height: 65px;
-    background: #4FADF9;
-    border-radius: 10px;
+
+button {
+    width: 100%;
+    height: 50px;
+    background-color: #46AE97;
+    border-radius: 25px;
     color: white;
-    
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 20px;
 }
 
 button:hover {
-    background-color: #448eca;
+    background-color: #3c9683;
+    transform: translateY(-3px);
+}
+
+@media (max-width: 600px) {
+    h2 {
+        font-size: 60px;
+    }
+
+    form {
+        padding: 20px;
+        max-width: 90%;
+    }
+
+    button {
+        font-size: 16px;
+        height: 45px;
+    }
 }

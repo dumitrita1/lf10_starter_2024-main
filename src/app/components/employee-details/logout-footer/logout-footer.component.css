@@ -1,18 +1,37 @@
-a{
+a {
+    display: inline-block;
     max-width: 180px;
     width: 100%;
     background: #FFFFFF;
     border: 1px solid #B0DCFF;
-    padding: 10px;
+    padding: 12px 20px;
     text-align: center;
     cursor: pointer;
-    margin-top: 50px;
-}
-a {
+    margin-top: 30px;
+    border-radius: 5px;
     font-size: 20px;
     color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-a:hover{
-    color: #FFFFFF;
+
+a:hover {
     background-color: #007bff;
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+a:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+@media (max-width: 600px) {
+    a {
+        font-size: 18px;
+        padding: 10px 15px;
+    }
 }
