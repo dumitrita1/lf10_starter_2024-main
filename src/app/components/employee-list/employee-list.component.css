@@ -5,7 +5,8 @@
 h2{
   font-family: "Just Me Again Down Here", serif;
   text-align: center;
-  font-size: 40px;
+  font-size: clamp(2.1875rem, 2.1053rem + 0.3509vw, 2.5rem); /* 35px-40px */
+  margin: 20px;
 }
 .employee-list{
   padding-top: 50px;
@@ -44,18 +45,22 @@ h3 {
   text-decoration: underline;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 660px) {
+  .skill-group{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    justify-content: center;
+  }
   .employee-cards{
-    grid-template-columns: repeat(4, 1fr);
-    gap: 100px 100px 0  0;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
   }
-  app-employee-card.employee-card-instance{
-    max-width: 190px;
-    width: 190px;
+  .employees-container{
+    margin-top: 0;
   }
+  h2{
+    margin-bottom: 0;
 }
-@media (max-width: 1050px) {
-  .employee-cards{
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
+ }

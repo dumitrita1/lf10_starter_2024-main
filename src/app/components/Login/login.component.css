@@ -9,7 +9,7 @@ div {
 }
 
 h2 {
-    font-size: 80px;
+    font-size: clamp(3.125rem, 2.6316rem + 2.1053vw, 5rem); /* 50px-80px */
     font-family: "Just Me Again Down Here", serif;
     color: #333;
     margin-bottom: 40px;
@@ -24,7 +24,7 @@ form {
     max-width: 500px;
     background-color: #fff;
     padding: 30px;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -78,18 +78,9 @@ button:hover {
     transform: translateY(-3px);
 }
 
-@media (max-width: 600px) {
-    h2 {
-        font-size: 60px;
-    }
-
-    form {
-        padding: 20px;
-        max-width: 90%;
-    }
-
-    button {
-        font-size: 16px;
-        height: 45px;
+@media (max-width: 640px) {
+    div {
+        width: 100vw;
+        padding: 50px;
     }
 }

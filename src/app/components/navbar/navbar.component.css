@@ -3,14 +3,25 @@ header{
   justify-content: space-between;
   align-items: center;
   padding:50px;
+  width: auto;
 }
 .logo {
   text-decoration: none;
   font-family: "Just Me Again Down Here", serif;
   color: #333;
-  font-size: 80px;
+  font-size: clamp(3.125rem, 2.6316rem + 2.1053vw, 5rem); /* 50px - 80px */
 }
 nav{
   display: flex;
   gap: 20px;
 }
+svg{
+  width: clamp(3.125rem, 2.9605rem + 0.7018vw, 3.75rem);
+  height: clamp(3.125rem, 2.9605rem + 0.7018vw, 3.75rem);
+}
+@media (max-width: 660px) {
+  header{
+    padding: 20px;
+  }
+}
+

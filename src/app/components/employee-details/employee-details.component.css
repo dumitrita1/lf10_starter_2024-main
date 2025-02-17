@@ -1,5 +1,5 @@
 section {
-    margin: 0 2rem;
+    margin: 50px;
     display: flex;
     justify-content: center;
     margin-top: 50px;
@@ -16,9 +16,9 @@ section, .employee-btn {
 }
 
 img {
-    max-width: 350px;
+    max-width: clamp(12.5rem, 10.0329rem + 10.5263vw, 21.875rem); /* 200px-350px */
     height: auto;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
@@ -32,9 +32,7 @@ img:hover {
     max-width: 550px;
     display: flex;
     flex-direction: column;
-
     padding: 20px;
-
     overflow: hidden;
 }
 
@@ -42,7 +40,7 @@ img:hover {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    font-size: 18px;
+    font-size: clamp(1rem, 0.9671rem + 0.1404vw, 1.125rem); /* 16px -18px */
     font-weight: 400;
     margin-top: 20px;
     color: #555;
@@ -50,7 +48,7 @@ img:hover {
 
 h2 {
     text-align: left;
-    font-size: 28px;
+    font-size: clamp(1.5rem, 1.4342rem + 0.2807vw, 1.75rem); /* 24px-28px */
     font-weight: 600;
     color: #4A4A4A;
     margin-bottom: 15px;
@@ -84,7 +82,7 @@ h2 {
     border-radius: 25px;
     color: #fff;
     padding: 12px 20px;
-    font-size: 18px;
+    font-size: clamp(1rem, 0.9671rem + 0.1404vw, 1.125rem); /* 16px - 18px */
     font-weight: 600;
     text-align: center;
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -110,18 +108,17 @@ h2 {
     transform: translateY(3px);
 }
 
-@media (max-width: 600px) {
-    section,
+@media (max-width: 640px) {
+    
+    .empoloyee{
+        padding: 0;
+    }
     .employee-btn {
         flex-direction: column;
     }
 
-    .empoloyee-details {
-        font-size: 16px;
-    }
-    
-    .btn {
-        font-size: 16px;
-        padding: 10px 15px;
-    }
+    .btn {   
+        max-width: 250px;
+        padding: 6px 14px;
+    }  
 }
