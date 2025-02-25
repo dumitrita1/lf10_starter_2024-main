@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SearchBarComponent } from './search-bar.component';
-import { FormsModule } from '@angular/forms'; // Necesitar pentru ngModel
-import { CommonModule } from '@angular/common'; // Necesitar pentru CommonModule
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common'; 
 
 describe('SearchBarComponent', () => {
   let component: SearchBarComponent;
@@ -9,7 +9,7 @@ describe('SearchBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SearchBarComponent, FormsModule, CommonModule]  // Adăugăm modulele necesare
+      imports: [SearchBarComponent, FormsModule, CommonModule] 
     })
     .compileComponents();
 
