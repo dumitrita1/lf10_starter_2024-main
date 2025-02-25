@@ -11,9 +11,9 @@ export class KeycloakService {
 
   constructor(private http: HttpClient) {
     this.keycloakAuth = new Keycloak({
-      url: 'http://localhost:8089/auth',
-      realm: 'your-realm',
-      clientId: 'your-client-id'
+      url: 'https://keycloak.szut.dev/auth', 
+      realm: 'szut',                      
+      clientId: 'employee-management-service-frontend', 
     });
   }
 
