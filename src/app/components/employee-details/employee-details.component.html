@@ -9,7 +9,7 @@
       <a href="tel:{{ employeePhonenumber() }}" class="phone-link">Telefonnummer: {{ employeePhonenumber() }}</a>
     </div>
     <div class="employee-btn">
-      <a class="btn edit-btn" (click)="openEditEmployee()" >
+      <a id="edit-btn" class="btn edit-btn" (click)="openEditEmployee()" >
         Mitarbeiter bearbeiten
       </a>
       <a class="btn delete-btn" (click)="deleteEmployee()" id="delete-button">

@@ -35,6 +35,7 @@ export class EmployeeDetailsComponent implements OnInit {
     this.employee = {};
   }
 
+  
   async ngOnInit() {
     try {
       this.token = await this.keycloakService.getToken();
@@ -44,6 +45,7 @@ export class EmployeeDetailsComponent implements OnInit {
         this.loadEmployeeData(id);
       });
 
+      this.updateEditButton();
       this.updateDeleteButton();
     } catch (error) {
       console.error('Error in initialization:', error);
@@ -51,8 +53,14 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   openEditEmployee() {
+    if (this.authService.getRole() !== 'admin') {
+      console.warn('Unauthorized attempt to edit employee');
+      return;
+    }
+  
     this.router.navigate(['/edit-employee', this.employee.id]);
   }
+  
 
   private loadEmployeeData(id: number) {
     this.backendService.getEmployeeById(id, this.token).subscribe({
@@ -69,6 +77,17 @@ export class EmployeeDetailsComponent implements OnInit {
     });
   }
 
+  private updateEditButton() {
+    if (this.authService.getRole() !== 'admin' || this.isError) {
+      const editButton = document.getElementById('edit-btn');
+      if (editButton) {
+        console.log('Disabling delete button');
+        editButton.setAttribute('disabled', 'true');
+        editButton.style.backgroundColor = 'grey';
+      }
+    }
+  }
+  
   private updateDeleteButton() {
     if (this.authService.getRole() !== 'admin' || this.isError) {
       const deleteButton = document.getElementById('delete-button');
