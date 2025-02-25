@@ -7,11 +7,12 @@ import {EmployeeCardComponent} from "./employee-card/employee-card.component";
 import { BackendService } from '../../backend.service';
 import {KeycloakService} from "../../keycloak.service";
 import {LogoutFooterComponent} from "../employee-details/logout-footer/logout-footer.component";
+import { SearchBarComponent } from '../search-bar-component/search-bar.component';
 
 @Component({
   selector: 'app-employee-list',
   standalone: true,
-  imports: [CommonModule, EmployeeCardComponent, LogoutFooterComponent],
+  imports: [CommonModule, EmployeeCardComponent, LogoutFooterComponent, SearchBarComponent],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.css'
 })
@@ -20,7 +21,6 @@ export class EmployeeListComponent implements OnInit {
   employeesToDisplay: any;
   groupedEmployees: { [key: string]: Employee[] } = {};
   bearer: Promise<string>;
-skill: any;
 
   constructor(private http: HttpClient,
               private backendService: BackendService,
@@ -29,6 +29,7 @@ skill: any;
     this.employees$ = of([]);
     this.fetchData();
   }
+
 
   fetchData() {
     this.bearer = this.keycloakService.getToken();
@@ -78,4 +79,25 @@ skill: any;
     });
   }
 
+  onSearch(searchTerm: string) {
+    console.log('Search term:', searchTerm);
+    if (searchTerm) {
+      this.groupedEmployees = this.filterEmployeesBySearchTerm(searchTerm);
+    } else {
+      this.groupEmployeesBySkill(this.employeesToDisplay);
+    }
+  }
+  
+  filterEmployeesBySearchTerm(searchTerm: string) {
+    const filteredEmployees: { [key: string]: Employee[] } = {};
+  
+    for (const skill in this.groupedEmployees) {
+      filteredEmployees[skill] = this.groupedEmployees[skill].filter(employee => {
+        const fullName = `${employee.firstName} ${employee.lastName}`.toLowerCase();
+        return fullName.includes(searchTerm.toLowerCase());
+      });
+    }
+  
+    return filteredEmployees;
+  }
 }

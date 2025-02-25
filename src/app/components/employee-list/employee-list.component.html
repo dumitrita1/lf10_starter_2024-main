@@ -1,5 +1,7 @@
 <section>
   <h2>Menschen, die gern gute Sachen machen</h2>
+  <app-search-bar-component (search)="onSearch($event)">
+  </app-search-bar-component>
   <div class="employees-container">
     <div *ngFor="let skill of groupedEmployees | keyvalue" class="skill-group">
       <h3 >{{ skill.key }}: </h3>
